@@ -8,6 +8,13 @@
       "when": 1793520092645,
       "tag": "0000_foamy_longshot",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793521637979,
+      "tag": "0001_strong_nextwave",
+      "breakpoints": true
     }
   ]
 }
