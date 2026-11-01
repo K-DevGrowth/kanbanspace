@@ -1,4 +1,4 @@
-const page = () => {
+const page = async () => {
   return <div>Onboarding</div>;
 };
 

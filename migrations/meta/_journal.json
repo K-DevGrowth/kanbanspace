@@ -15,6 +15,13 @@
       "when": 1793521637979,
       "tag": "0001_strong_nextwave",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793547880337,
+      "tag": "0002_pretty_union_jack",
+      "breakpoints": true
     }
   ]
 }
