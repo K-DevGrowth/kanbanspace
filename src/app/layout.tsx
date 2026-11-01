@@ -4,8 +4,8 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 
 export const metadata: Metadata = {
-  title: "Planify | SaaS Project Management",
-  description: "Modern SaaS Project Management Platform",
+  title: "Planify | Nền tảng Quản lý Dự án SaaS",
+  description: "Nền tảng Quản lý Dự án SaaS Hiện đại và Tối giản",
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="vi">
       <body className="min-h-screen bg-background text-foreground antialiased flex">
         <Sidebar />
         <div className="flex-1 flex flex-col min-w-0">

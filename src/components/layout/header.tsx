@@ -11,7 +11,7 @@ export function Header() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Search projects, tasks, or members..."
+            placeholder="Tìm kiếm dự án, công việc, thành viên..."
             className="w-full pl-9 pr-4 py-2 text-sm bg-background border border-input rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
             disabled
           />
@@ -28,10 +28,10 @@ export function Header() {
         </Button>
         <Button size="sm" className="gap-1.5">
           <Plus className="h-3.5 w-3.5" />
-          <span>New Project</span>
+          <span>Tạo dự án mới</span>
         </Button>
         <div className="h-8 w-8 rounded-full bg-secondary text-secondary-foreground font-semibold text-xs flex items-center justify-center border border-border">
-          JD
+          NV
         </div>
       </div>
     </header>

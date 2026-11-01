@@ -13,11 +13,11 @@ import {
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Overview", href: "/", icon: LayoutDashboard, current: true },
-  { name: "Projects", href: "#", icon: FolderKanban, current: false },
-  { name: "My Tasks", href: "#", icon: CheckSquare, current: false },
-  { name: "Team", href: "#", icon: Users2, current: false },
-  { name: "Settings", href: "#", icon: Settings, current: false },
+  { name: "Tổng quan", href: "/", icon: LayoutDashboard, current: true },
+  { name: "Dự án", href: "#", icon: FolderKanban, current: false },
+  { name: "Công việc của tôi", href: "#", icon: CheckSquare, current: false },
+  { name: "Thành viên", href: "#", icon: Users2, current: false },
+  { name: "Cài đặt", href: "#", icon: Settings, current: false },
 ];
 
 export function Sidebar() {
@@ -33,7 +33,7 @@ export function Sidebar() {
             Planify
           </span>
           <span className="text-[11px] text-muted-foreground font-medium">
-            Project Suite
+            Bộ công cụ Quản lý
           </span>
         </div>
       </div>
@@ -41,7 +41,7 @@ export function Sidebar() {
       {/* Nav links */}
       <div className="p-4 flex-1 space-y-1">
         <p className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-          Workspace
+          Không gian làm việc
         </p>
         <nav className="space-y-1">
           {navigation.map((item) => {
@@ -74,10 +74,10 @@ export function Sidebar() {
       <div className="p-4 m-4 rounded-lg bg-muted/50 border border-border">
         <div className="flex items-center gap-2 mb-1.5">
           <Sparkles className="h-4 w-4 text-primary" />
-          <p className="text-xs font-semibold">shadcn ready</p>
+          <p className="text-xs font-semibold">shadcn/ui</p>
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Clean components.json & minimal dependencies configured.
+          Đã cấu hình components.json & tối giản phụ thuộc cần thiết.
         </p>
       </div>
     </aside>

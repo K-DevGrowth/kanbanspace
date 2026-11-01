@@ -20,80 +20,96 @@ import { Badge } from "@/components/ui/badge";
 const mockProjects = [
   {
     id: "proj-1",
-    name: "Customer Onboarding Redesign",
-    description: "Streamline signup and activation flows for self-serve users.",
-    category: "Product",
+    name: "Thiết kế lại Luồng tiếp nhận Khách hàng",
+    description:
+      "Tối ưu hóa quy trình đăng ký và kích hoạt tài khoản cho người dùng tự phục vụ.",
+    category: "Sản phẩm",
     taskCount: 12,
     completedTaskCount: 8,
     status: "active",
-    updatedAt: "2 hours ago",
+    updatedAt: "2 giờ trước",
   },
   {
     id: "proj-2",
-    name: "Design System & UI Kit",
+    name: "Hệ thống Thiết kế & Bộ UI Kit",
     description:
-      "Standardize buttons, inputs, modals, and design tokens across apps.",
-    category: "Design",
+      "Chuẩn hóa các thành phần giao diện, nút bấm, biểu mẫu và design tokens trong ứng dụng.",
+    category: "Thiết kế",
     taskCount: 18,
     completedTaskCount: 14,
     status: "active",
-    updatedAt: "Yesterday",
+    updatedAt: "Hôm qua",
   },
   {
     id: "proj-3",
-    name: "API Performance Optimization",
+    name: "Tối ưu Hiệu năng API Backend",
     description:
-      "Implement query caching and response compression for core endpoints.",
-    category: "Engineering",
+      "Triển khai bộ nhớ đệm truy vấn và nén dữ liệu phản hồi cho các endpoint quan trọng.",
+    category: "Kỹ thuật",
     taskCount: 9,
     completedTaskCount: 3,
     status: "planning",
-    updatedAt: "3 days ago",
+    updatedAt: "3 ngày trước",
   },
 ];
 
 const mockTasks = [
   {
     id: "task-1",
-    title: "Implement responsive Kanban board columns",
+    title: "Xây dựng các cột bảng Kanban thích ứng",
     status: "in_progress",
     priority: "high",
     projectId: "proj-1",
-    dueDate: "Tomorrow",
+    dueDate: "Ngày mai",
     createdAt: "2026-10-30",
     updatedAt: "2026-11-01",
   },
   {
     id: "task-2",
-    title: "Set up Prisma schema and migrations",
+    title: "Thiết lập cấu trúc schema và migration dữ liệu",
     status: "todo",
     priority: "medium",
     projectId: "proj-3",
-    dueDate: "Next week",
+    dueDate: "Tuần tới",
     createdAt: "2026-10-31",
     updatedAt: "2026-11-01",
   },
   {
     id: "task-3",
-    title: "Design team invite flow and role permissions",
+    title: "Thiết kế luồng mời thành viên và phân quyền nhóm",
     status: "in_review",
     priority: "high",
     projectId: "proj-1",
-    dueDate: "In 3 days",
+    dueDate: "Còn 3 ngày",
     createdAt: "2026-10-28",
     updatedAt: "2026-10-31",
   },
   {
     id: "task-4",
-    title: "Configure Tailwind CSS and design tokens",
+    title: "Cấu hình Tailwind CSS và biến giao diện shadcn",
     status: "done",
     priority: "urgent",
     projectId: "proj-2",
-    dueDate: "Done",
+    dueDate: "Đã xong",
     createdAt: "2026-10-29",
     updatedAt: "2026-11-01",
   },
 ];
+
+const priorityLabels: Record<string, string> = {
+  urgent: "Khẩn cấp",
+  high: "Ưu tiên cao",
+  medium: "Trung bình",
+  low: "Thấp",
+};
+
+const statusLabels: Record<string, string> = {
+  in_progress: "Đang làm",
+  todo: "Cần làm",
+  in_review: "Đang duyệt",
+  done: "Hoàn thành",
+  backlog: "Chờ xử lý",
+};
 
 export default function DashboardPage() {
   return (
@@ -102,19 +118,19 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">
-            Project Overview
+            Tổng quan Dự án
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Minimal SaaS Project Management foundation using shadcn UI.
+            Nền tảng Quản lý Dự án SaaS tinh gọn với shadcn UI.
           </p>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="sm">
-            Import Project
+            Nhập dự án
           </Button>
           <Button size="sm" className="gap-1.5">
             <Plus className="h-4 w-4" />
-            Create Project
+            Tạo dự án mới
           </Button>
         </div>
       </div>
@@ -124,14 +140,14 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Active Projects
+              Dự án đang thực hiện
             </CardTitle>
             <FolderKanban className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
             <p className="text-xs text-muted-foreground mt-1">
-              2 in progress, 1 in planning
+              2 đang tiến hành, 1 đang lập kế hoạch
             </p>
           </CardContent>
         </Card>
@@ -139,14 +155,14 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Open Tasks
+              Công việc cần làm
             </CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">14</div>
             <p className="text-xs text-muted-foreground mt-1">
-              3 tasks due this week
+              3 công việc đến hạn tuần này
             </p>
           </CardContent>
         </Card>
@@ -154,14 +170,14 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Completed Tasks
+              Công việc đã hoàn thành
             </CardTitle>
             <CheckCircle2 className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">25</div>
             <p className="text-xs text-muted-foreground mt-1">
-              +12% completion rate
+              +12% tỷ lệ hoàn thành so với tuần trước
             </p>
           </CardContent>
         </Card>
@@ -170,13 +186,13 @@ export default function DashboardPage() {
       {/* Projects Grid */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Active Projects</h2>
+          <h2 className="text-lg font-semibold">Dự án hoạt động</h2>
           <Button
             variant="ghost"
             size="sm"
             className="text-xs text-muted-foreground gap-1"
           >
-            View All <ArrowUpRight className="h-3.5 w-3.5" />
+            Xem tất cả <ArrowUpRight className="h-3.5 w-3.5" />
           </Button>
         </div>
 
@@ -194,7 +210,9 @@ export default function DashboardPage() {
                         project.status === "active" ? "default" : "secondary"
                       }
                     >
-                      {project.status === "active" ? "In Progress" : "Planning"}
+                      {project.status === "active"
+                        ? "Đang tiến hành"
+                        : "Lên kế hoạch"}
                     </Badge>
                     <span className="text-xs text-muted-foreground">
                       {project.updatedAt}
@@ -210,7 +228,7 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs text-muted-foreground">
-                      <span>Progress</span>
+                      <span>Tiến độ</span>
                       <span className="font-medium text-foreground">
                         {progress}%
                       </span>
@@ -222,8 +240,8 @@ export default function DashboardPage() {
                       />
                     </div>
                     <div className="flex justify-between text-xs text-muted-foreground pt-1">
-                      <span>{project.taskCount} tasks total</span>
-                      <span>{project.completedTaskCount} completed</span>
+                      <span>{project.taskCount} việc tất cả</span>
+                      <span>{project.completedTaskCount} hoàn thành</span>
                     </div>
                   </div>
                 </CardContent>
@@ -235,7 +253,7 @@ export default function DashboardPage() {
 
       {/* Recent Tasks List */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Recent Tasks</h2>
+        <h2 className="text-lg font-semibold">Công việc gần đây</h2>
         <Card className="overflow-hidden">
           <div className="divide-y divide-border">
             {mockTasks.map((task) => (
@@ -248,7 +266,7 @@ export default function DashboardPage() {
                   <div>
                     <p className="text-sm font-medium">{task.title}</p>
                     <p className="text-xs text-muted-foreground">
-                      Due: {task.dueDate}
+                      Hạn chót: {task.dueDate}
                     </p>
                   </div>
                 </div>
@@ -262,7 +280,7 @@ export default function DashboardPage() {
                           : "outline"
                     }
                   >
-                    {task.priority}
+                    {priorityLabels[task.priority] || task.priority}
                   </Badge>
                   <Badge
                     variant={
@@ -273,7 +291,7 @@ export default function DashboardPage() {
                           : "outline"
                     }
                   >
-                    {task.status.replace("_", " ")}
+                    {statusLabels[task.status] || task.status}
                   </Badge>
                 </div>
               </div>
@@ -287,12 +305,11 @@ export default function DashboardPage() {
         <AlertCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
         <div className="text-xs text-muted-foreground leading-relaxed">
           <span className="font-semibold text-foreground">
-            Clean shadcn architecture:{" "}
+            Kiến trúc shadcn/ui chuẩn:{" "}
           </span>
-          Configured with{" "}
+          Đã thiết lập cấu hình{" "}
           <code className="text-foreground font-mono">components.json</code>,
-          shadcn HSL theme tokens, and minimal essential dependencies without
-          unnecessary packages.
+          hệ biến màu HSL chuẩn shadcn và gói phụ thuộc tối giản cần thiết.
         </div>
       </div>
     </div>
