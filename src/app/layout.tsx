@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={beVietNamPro.className}>
-      <body className="min-h-screen bg-background text-foreground antialiased flex">
+      <body>
         <main className="p-4">{children}</main>
       </body>
     </html>

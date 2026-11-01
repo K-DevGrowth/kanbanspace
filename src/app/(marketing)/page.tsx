@@ -1,5 +1,7 @@
+import { redirect } from "next/navigation";
+
 const page = () => {
-  return <div>Trang chủ</div>;
+  redirect("/signup");
 };
 
 export default page;
