@@ -1,4 +1,10 @@
-import { SignupForm } from "@/components/layout/signup-form"
+import type { Metadata } from "next";
+import { SignupForm } from "@/components/layout/signup-form";
+
+export const metadata: Metadata = {
+  title: "Đăng nhập | Planify",
+  description: "Đăng nhập hoặc đăng ký tài khoản Planify của bạn.",
+};
 
 export default function SignupPage() {
   return (
@@ -7,5 +13,5 @@ export default function SignupPage() {
         <SignupForm />
       </div>
     </div>
-  )
+  );
 }

@@ -87,7 +87,7 @@ export function HeroSection() {
                   <div className="w-2.5 h-2.5 rounded-full bg-border" />
                 </div>
                 <span className="text-[11px] font-medium text-muted-foreground pl-2 border-l border-border/80">
-                  Planify / Dự án Phát triển Sản phẩm SaaS / Baber Booking
+                  Planify / Dự án Phát triển Sản phẩm SaaS / Q4 Sprint
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
@@ -104,7 +104,7 @@ export function HeroSection() {
                   <span className="text-2xl" role="img" aria-label="rocket">
                     🚀
                   </span>
-                  <span>Kế hoạch Ra mắt nền tảng đặt lịch cắt tóc</span>
+                  <span>Kế hoạch Ra mắt Nền tảng Q4</span>
                 </div>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Theo dõi công việc phát triển, kiểm thử chất lượng và chuẩn bị
@@ -142,11 +142,11 @@ export function HeroSection() {
                         Ưu tiên Cao
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
-                        #BK-104
+                        #PL-104
                       </span>
                     </div>
                     <p className="text-xs font-medium text-foreground">
-                      Xây dựng API đặt lịch và chống trùng khung giờ của thợ
+                      Tối ưu hóa bảng chỉ mục cơ sở dữ liệu
                     </p>
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t border-border/40">
                       <span className="flex items-center gap-1">
@@ -164,12 +164,11 @@ export function HeroSection() {
                         Nghiên cứu
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
-                        #BK-105
+                        #PL-105
                       </span>
                     </div>
                     <p className="text-xs font-medium text-foreground">
-                      Khảo sát khung giờ cắt tóc phù hợp với lịch làm việc của
-                      dev
+                      Khảo sát ý kiến người dùng về dark mode
                     </p>
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t border-border/40">
                       <span className="flex items-center gap-1">
@@ -200,11 +199,11 @@ export function HeroSection() {
                         Đang làm
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
-                        #BK-102
+                        #PL-102
                       </span>
                     </div>
                     <p className="text-xs font-medium text-foreground">
-                      Chuẩn hóa typography và spacing
+                      Chuẩn hóa typography và spacing theo Notion
                     </p>
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t border-border/40">
                       <span className="flex items-center gap-1">
@@ -235,11 +234,11 @@ export function HeroSection() {
                         Đã xong
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
-                        #BK-99
+                        #PL-99
                       </span>
                     </div>
                     <p className="text-xs font-medium text-foreground line-through text-muted-foreground">
-                      Thiết lập kiến trúc cơ sở dữ liệu MySQL
+                      Thiết lập kiến trúc Drizzle ORM và Neon
                     </p>
                     <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-1 border-t border-border/40">
                       <span className="flex items-center gap-1">
