@@ -11,7 +11,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, GalleryVerticalEndIcon, Layers } from "lucide-react";
+import { ArrowLeft, Layers } from "lucide-react";
 import { GoogleButton } from "@/features/auth/components/google-button";
 import Link from "next/link";
 
