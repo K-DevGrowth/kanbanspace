@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro } from "next/font/google";
+import { Be_Vietnam_Pro, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,17 +14,25 @@ const beVietNamPro = Be_Vietnam_Pro({
   display: "swap",
 });
 
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${beVietNamPro.variable} font-sans`}>
-      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/10 selection:text-primary">
+    <html
+      lang="vi"
+      className={`${beVietNamPro.variable} ${geistMono.variable} font-sans`}
+    >
+      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-blue-500/15 selection:text-foreground">
         {children}
       </body>
     </html>
   );
 }
-

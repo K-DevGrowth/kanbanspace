@@ -39,82 +39,183 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-xs: calc(var(--radius) * 0.5);
+  --radius-sm: calc(var(--radius) * 0.7);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.33);
+  --radius-xl: calc(var(--radius) * 1.8);
+  --radius-2xl: calc(var(--radius) * 2.4);
+  --radius-3xl: calc(var(--radius) * 3);
+  --radius-4xl: calc(var(--radius) * 3.6);
+
+  --color-notion-gray-bg: var(--notion-gray-bg);
+  --color-notion-gray-text: var(--notion-gray-text);
+  --color-notion-brown-bg: var(--notion-brown-bg);
+  --color-notion-brown-text: var(--notion-brown-text);
+  --color-notion-orange-bg: var(--notion-orange-bg);
+  --color-notion-orange-text: var(--notion-orange-text);
+  --color-notion-yellow-bg: var(--notion-yellow-bg);
+  --color-notion-yellow-text: var(--notion-yellow-text);
+  --color-notion-green-bg: var(--notion-green-bg);
+  --color-notion-green-text: var(--notion-green-text);
+  --color-notion-blue-bg: var(--notion-blue-bg);
+  --color-notion-blue-text: var(--notion-blue-text);
+  --color-notion-purple-bg: var(--notion-purple-bg);
+  --color-notion-purple-text: var(--notion-purple-text);
+  --color-notion-pink-bg: var(--notion-pink-bg);
+  --color-notion-pink-text: var(--notion-pink-text);
+  --color-notion-red-bg: var(--notion-red-bg);
+  --color-notion-red-text: var(--notion-red-text);
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Notion Aesthetic: Clean, balanced, warm light canvas */
+  --background: oklch(0.995 0.002 90);
+  --foreground: oklch(0.24 0.012 260); /* Warm deep charcoal #2f343b */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.24 0.012 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #2563eb;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.24 0.012 260);
+  --primary: oklch(0.18 0.01 260); /* Notion bold black/charcoal button */
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.968 0.003 90); /* Notion warm surface #f7f7f5 */
+  --secondary-foreground: oklch(0.26 0.01 260);
+  --muted: oklch(0.962 0.003 90); /* #f1f1ef */
+  --muted-foreground: oklch(0.55 0.01 80); /* Notion soft neutral text #787774 */
+  --accent: oklch(0.962 0.003 90);
+  --accent-foreground: oklch(0.20 0.01 260);
+  --destructive: oklch(0.58 0.22 25); /* Notion red #e03e3e */
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.915 0.004 85); /* Notion hairline border #e6e6e4 */
+  --input: oklch(0.915 0.004 85);
+  --ring: oklch(0.58 0.17 245); /* Notion blue #2383e2 */
+  --chart-1: oklch(0.58 0.17 245);
+  --chart-2: oklch(0.55 0.12 150);
+  --chart-3: oklch(0.72 0.14 75);
+  --chart-4: oklch(0.58 0.22 25);
+  --chart-5: oklch(0.52 0.16 310);
+  --radius: 0.375rem; /* 6px - crisp Notion corner radius */
+  --sidebar: oklch(0.975 0.003 90); /* Notion iconic sidebar cream-tint */
+  --sidebar-foreground: oklch(0.30 0.01 260);
+  --sidebar-primary: oklch(0.20 0.01 260);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.945 0.004 90);
+  --sidebar-accent-foreground: oklch(0.20 0.01 260);
+  --sidebar-border: oklch(0.92 0.004 85);
+  --sidebar-ring: oklch(0.58 0.17 245);
+
+  /* Notion Tag & Callout Palette (Light) */
+  --notion-gray-bg: #f1f1ef;
+  --notion-gray-text: #5a5a58;
+  --notion-brown-bg: #f4eeee;
+  --notion-brown-text: #976d57;
+  --notion-orange-bg: #faece3;
+  --notion-orange-text: #d9730d;
+  --notion-yellow-bg: #fbf3db;
+  --notion-yellow-text: #cb912f;
+  --notion-green-bg: #edf3ec;
+  --notion-green-text: #448361;
+  --notion-blue-bg: #e7f3f8;
+  --notion-blue-text: #2c7cb0;
+  --notion-purple-bg: #f4f0f7;
+  --notion-purple-text: #9065b0;
+  --notion-pink-bg: #faf1f5;
+  --notion-pink-text: #c14c8a;
+  --notion-red-bg: #fdebec;
+  --notion-red-text: #d44c47;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  /* Notion Dark Mode: Low-contrast charcoal, calm, eye-friendly */
+  --background: oklch(0.19 0 0); /* #191919 */
+  --foreground: oklch(0.93 0 0); /* #ebebeb */
+  --card: oklch(0.23 0 0); /* #252525 */
+  --card-foreground: oklch(0.93 0 0);
+  --popover: oklch(0.22 0 0); /* #222222 */
+  --popover-foreground: oklch(0.93 0 0);
+  --primary: oklch(0.96 0 0); /* High-contrast white action in dark mode */
+  --primary-foreground: oklch(0.18 0 0);
+  --secondary: oklch(0.25 0 0); /* #2a2a2a */
+  --secondary-foreground: oklch(0.93 0 0);
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.68 0 0); /* #9a9a97 */
+  --accent: oklch(0.26 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.65 0.20 25); /* #eb5757 */
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 11%); /* Hairline translucent border */
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.62 0.16 245);
+  --chart-1: oklch(0.62 0.16 245);
+  --chart-2: oklch(0.65 0.12 150);
+  --chart-3: oklch(0.78 0.14 75);
+  --chart-4: oklch(0.65 0.20 25);
+  --chart-5: oklch(0.60 0.16 310);
+  --sidebar: oklch(0.21 0 0); /* #202020 */
+  --sidebar-foreground: oklch(0.88 0 0);
+  --sidebar-primary: oklch(0.95 0 0);
+  --sidebar-primary-foreground: oklch(0.18 0 0);
+  --sidebar-accent: oklch(0.27 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.62 0.16 245);
+
+  /* Notion Tag & Callout Palette (Dark) */
+  --notion-gray-bg: #2f2f2f;
+  --notion-gray-text: #9b9a97;
+  --notion-brown-bg: #3d312c;
+  --notion-brown-text: #be876b;
+  --notion-orange-bg: #432e1f;
+  --notion-orange-text: #e0832d;
+  --notion-yellow-bg: #413923;
+  --notion-yellow-text: #dfb252;
+  --notion-green-bg: #25392b;
+  --notion-green-text: #529e72;
+  --notion-blue-bg: #1f3747;
+  --notion-blue-text: #459bd6;
+  --notion-purple-bg: #342743;
+  --notion-purple-text: #9d72c3;
+  --notion-pink-bg: #3f2735;
+  --notion-pink-text: #d15796;
+  --notion-red-bg: #442726;
+  --notion-red-text: #eb5757;
+}
+
+@utility notion-tag-gray {
+  background-color: var(--notion-gray-bg);
+  color: var(--notion-gray-text);
+}
+@utility notion-tag-brown {
+  background-color: var(--notion-brown-bg);
+  color: var(--notion-brown-text);
+}
+@utility notion-tag-orange {
+  background-color: var(--notion-orange-bg);
+  color: var(--notion-orange-text);
+}
+@utility notion-tag-yellow {
+  background-color: var(--notion-yellow-bg);
+  color: var(--notion-yellow-text);
+}
+@utility notion-tag-green {
+  background-color: var(--notion-green-bg);
+  color: var(--notion-green-text);
+}
+@utility notion-tag-blue {
+  background-color: var(--notion-blue-bg);
+  color: var(--notion-blue-text);
+}
+@utility notion-tag-purple {
+  background-color: var(--notion-purple-bg);
+  color: var(--notion-purple-text);
+}
+@utility notion-tag-pink {
+  background-color: var(--notion-pink-bg);
+  color: var(--notion-pink-text);
+}
+@utility notion-tag-red {
+  background-color: var(--notion-red-bg);
+  color: var(--notion-red-text);
 }
 
 @layer base {

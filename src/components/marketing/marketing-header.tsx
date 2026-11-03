@@ -11,40 +11,53 @@ export function MarketingHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/90 backdrop-blur-md transition-all">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/85 backdrop-blur-md transition-all">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link
           href="/"
           className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm shadow-primary/25">
-            <Layers className="h-5 w-5" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-primary text-primary-foreground shadow-2xs">
+            <Layers className="h-4 w-4" />
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold tracking-tight text-foreground">
-              Planify
-            </span>
-          </div>
+          <span className="text-base font-bold tracking-tight text-foreground">
+            Planify
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2"></nav>
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-muted-foreground">
+          <Link
+            href="#features"
+            className="hover:text-foreground transition-colors"
+          >
+            Tính năng
+          </Link>
+          <Link
+            href="#design-system"
+            className="hover:text-foreground transition-colors"
+          >
+            Hệ thống Thiết kế
+          </Link>
+        </nav>
 
-        {/* Right CTA */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right CTAs */}
+        <div className="hidden sm:flex items-center gap-2.5">
           <Link
             href="/signup"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
+            className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
           >
             Đăng nhập
           </Link>
           <Link
             href="/signup"
-            className={cn(buttonVariants({ size: "sm" }), "gap-1.5 shadow-sm")}
+            className={cn(
+              buttonVariants({ size: "sm", variant: "default" }),
+              "gap-1 shadow-xs",
+            )}
           >
-            <span className="sm:hidden">Dùng thử</span>
-            <span className="hidden sm:inline">Dùng thử miễn phí</span>
+            <span>Dùng thử miễn phí</span>
           </Link>
         </div>
 
@@ -54,20 +67,19 @@ export function MarketingHeader() {
             href="/signup"
             className={cn(buttonVariants({ size: "xs", variant: "default" }))}
           >
-            <span className="sm:hidden">Dùng thử</span>
-            <span className="hidden sm:inline">Dùng thử miễn phí</span>
+            Dùng thử
           </Link>
           <Button
             variant="ghost"
-            size="icon-sm"
+            size="icon-xs"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             className="text-foreground"
           >
             {mobileMenuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             ) : (
-              <Menu className="h-5 w-5" />
+              <Menu className="h-4 w-4" />
             )}
           </Button>
         </div>
@@ -75,20 +87,31 @@ export function MarketingHeader() {
 
       {/* Mobile dropdown */}
       {mobileMenuOpen && (
-        <div className="border-b border-border bg-background/98 px-4 pt-3 pb-6 md:hidden animate-in slide-in-from-top-2 duration-200">
+        <div className="border-b border-border bg-background px-4 pt-3 pb-6 md:hidden animate-in slide-in-from-top-2 duration-200">
           <div className="flex items-center justify-between pb-3 border-b border-border mb-3">
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              <span>Nền tảng quản lý dự án</span>
+              <Sparkles className="h-3.5 w-3.5 text-foreground" />
+              <span>Không gian làm việc linh hoạt</span>
             </div>
+            <Badge variant="blue" size="sm">
+              Mới
+            </Badge>
           </div>
-          <nav className="flex flex-col space-y-1"></nav>
+          <nav className="flex flex-col space-y-2 text-sm font-medium text-muted-foreground">
+            <Link
+              href="#features"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-2 py-1.5 rounded-md hover:bg-muted hover:text-foreground transition-colors"
+            >
+              Tính năng
+            </Link>
+          </nav>
           <div className="mt-4 pt-4 border-t border-border flex flex-col gap-2">
             <Link
               href="/signup"
               onClick={() => setMobileMenuOpen(false)}
               className={cn(
-                buttonVariants({ variant: "outline" }),
+                buttonVariants({ variant: "outline", size: "sm" }),
                 "w-full justify-center",
               )}
             >
@@ -98,12 +121,11 @@ export function MarketingHeader() {
               href="/signup"
               onClick={() => setMobileMenuOpen(false)}
               className={cn(
-                buttonVariants({ variant: "default" }),
-                "w-full justify-center gap-2",
+                buttonVariants({ variant: "default", size: "sm" }),
+                "w-full justify-center gap-1.5",
               )}
             >
-              <span>Tạo tài khoản miễn phí</span>
-              <ArrowRight className="h-4 w-4" />
+              <span>Dùng thử miễn phí</span>
             </Link>
           </div>
         </div>

@@ -1,38 +1,61 @@
 "use client";
 
-import { Search, Bell, Plus } from "lucide-react";
-import { Button } from "../ui/button";
+import { Search, Bell, Plus, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Kbd } from "@/components/ui/kbd";
 
 export function Header() {
   return (
-    <header className="h-16 border-b border-border bg-background/95 backdrop-blur px-6 flex items-center justify-between sticky top-0 z-10">
-      <div className="flex items-center gap-4 flex-1 max-w-md">
+    <header className="h-12 border-b border-border bg-background/90 backdrop-blur-sm px-4 flex items-center justify-between sticky top-0 z-20">
+      {/* Breadcrumb path */}
+      <div className="flex items-center gap-2 text-xs text-muted-foreground min-w-0">
+        <span className="hover:text-foreground cursor-pointer transition-colors">
+          Workspace
+        </span>
+        <span className="text-muted-foreground/40">/</span>
+        <span className="font-medium text-foreground truncate">
+          Dự án Quản lý Chiến dịch
+        </span>
+      </div>
+
+      {/* Center Search / Shortcut */}
+      <div className="hidden md:flex items-center gap-2 max-w-sm flex-1 mx-4">
         <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Tìm kiếm dự án, công việc, thành viên..."
-            className="w-full pl-9 pr-4 py-2 text-sm bg-background border border-input rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
+            placeholder="Tìm kiếm công việc, tài liệu..."
+            className="w-full h-7 pl-8 pr-12 text-xs bg-muted/40 border border-border/80 rounded-md placeholder:text-muted-foreground/70 focus:bg-background focus:outline-none focus:ring-1 focus:ring-ring transition-all"
             disabled
           />
+          <div className="absolute right-2 top-1/2 -translate-y-1/2">
+            <Kbd>⌘K</Kbd>
+          </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      {/* Right Actions */}
+      <div className="flex items-center gap-1.5">
         <Button
           variant="ghost"
-          size="icon"
-          className="text-muted-foreground hover:text-foreground"
+          size="sm"
+          className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground hidden sm:inline-flex"
         >
-          <Bell className="h-4 w-4" />
+          <Share2 className="h-3.5 w-3.5" />
+          <span>Chia sẻ</span>
         </Button>
-        <Button size="sm" className="gap-1.5">
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="h-7 w-7 text-muted-foreground hover:text-foreground"
+          aria-label="Thông báo"
+        >
+          <Bell className="h-3.5 w-3.5" />
+        </Button>
+        <Button size="sm" className="h-7 text-xs gap-1 px-2.5">
           <Plus className="h-3.5 w-3.5" />
-          <span>Tạo dự án mới</span>
+          <span>Tạo mới</span>
         </Button>
-        <div className="h-8 w-8 rounded-full bg-secondary text-secondary-foreground font-semibold text-xs flex items-center justify-center border border-border">
-          NV
-        </div>
       </div>
     </header>
   );
