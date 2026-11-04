@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 import { Kbd } from "@/components/ui/kbd";
 
 const navigation = [
-  { name: "Tổng quan", href: "/", icon: LayoutDashboard, current: true },
+  { name: "Tổng quan", href: "#", icon: LayoutDashboard, current: true },
   { name: "Dự án", href: "#", icon: FolderKanban, current: false },
   { name: "Công việc của tôi", href: "#", icon: CheckSquare, current: false },
   { name: "Thành viên", href: "#", icon: Users2, current: false },
