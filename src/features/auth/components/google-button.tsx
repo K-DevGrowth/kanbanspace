@@ -6,7 +6,7 @@ export function GoogleButton() {
   const signIn = () => {
     authClient.signIn.social({
       provider: "google",
-      callbackURL: "/home",
+      callbackURL: "/planify",
     });
   };
 

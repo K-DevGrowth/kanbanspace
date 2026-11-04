@@ -1,0 +1,32 @@
+import { cache } from "react";
+import { auth } from "./auth";
+import { headers } from "next/headers";
+import { notFound, redirect } from "next/navigation";
+
+export const getSession = cache(async () =>
+  auth.api.getSession({ headers: await headers() }),
+);
+
+export const getOrgs = cache(async () =>
+  auth.api.listOrganizations({ headers: await headers() }),
+);
+
+export const requireSession = async () => {
+  const session = await getSession();
+  if (!session) redirect("/signup");
+  return session;
+};
+
+export const requireOrgs = async () => {
+  const session = await requireSession();
+  const orgs = await getOrgs();
+  if (orgs.length === 0) redirect("/onboarding");
+  return { session, orgs };
+};
+
+export const requireOrg = async (slug: string) => {
+  const { session, orgs } = await requireOrgs();
+  const org = orgs.find((o) => o.slug === slug);
+  if (!org) notFound();
+  return { session, org, orgs };
+};
