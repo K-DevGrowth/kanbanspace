@@ -1,5 +1,5 @@
-import { Sidebar } from "@/components/layout/sidebar";
-import { Header } from "@/components/layout/header";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { requireOrg } from "@/lib/auth/session";
 import { Suspense } from "react";
 
@@ -25,14 +25,13 @@ async function WorkspaceShell({
   params: Promise<{ orgSlug: string }>;
 }>) {
   const { orgSlug } = await params;
-  await requireOrg(orgSlug);
+  const { org, orgs } = await requireOrg(orgSlug);
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased flex">
-      <Sidebar />
+    <SidebarProvider className="min-h-screen bg-background text-foreground antialiased flex">
+      <AppSidebar currentOrg={org} orgs={orgs} />
       <div className="flex-1 flex flex-col min-w-0">
-        <Header />
         <div className="flex-1 p-8 overflow-y-auto">{children}</div>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
