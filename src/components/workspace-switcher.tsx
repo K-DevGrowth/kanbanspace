@@ -47,13 +47,15 @@ export function WorkspaceSwitcher({
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger
-              render={<SidebarMenuButton className="w-fit px-1.5" />}
+              render={<SidebarMenuButton className="w-full" />}
             >
-              <div className="flex aspect-square size-5 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground font-semibold text-xs">
+              <div className="flex aspect-square size-5 shrink-0 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground font-semibold text-xs">
                 {currentOrg.name?.charAt(0)?.toUpperCase()}
               </div>
-              <span className="truncate font-medium">{currentOrg.name}</span>
-              <ChevronDownIcon className="opacity-50" />
+              <span className="truncate font-medium flex-1 text-left min-w-0">
+                {currentOrg.name}
+              </span>
+              <ChevronDownIcon className="ml-auto size-4 shrink-0 opacity-50" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               className="w-64 rounded-lg"
@@ -71,11 +73,11 @@ export function WorkspaceSwitcher({
                     onClick={() => router.push(`/planify/${o.slug}`)}
                     className="gap-2 p-2 cursor-pointer"
                   >
-                    <div className="flex size-6 items-center justify-center rounded-xs border text-xs font-medium">
+                    <div className="flex size-6 shrink-0 items-center justify-center rounded-xs border text-xs font-medium">
                       {o.name?.charAt(0)?.toUpperCase()}
                     </div>
-                    <span className="truncate flex-1">{o.name}</span>
-                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                    <span className="truncate flex-1 min-w-0">{o.name}</span>
+                    <DropdownMenuShortcut className="shrink-0">⌘{index + 1}</DropdownMenuShortcut>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>

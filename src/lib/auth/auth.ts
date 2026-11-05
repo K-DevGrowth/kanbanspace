@@ -1,15 +1,10 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { db } from "@/db/client";
 import * as schema from "../../db/schema/auth-schema";
 import { organization } from "better-auth/plugins";
 import { ac, roles } from "./permissions";
 import { nextCookies } from "better-auth/next-js";
-
-const db = drizzle(new Pool({ connectionString: process.env.DATABASE_URL }), {
-  schema,
-});
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),

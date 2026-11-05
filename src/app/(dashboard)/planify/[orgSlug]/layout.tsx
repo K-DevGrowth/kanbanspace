@@ -27,7 +27,7 @@ async function WorkspaceShell({
   const { orgSlug } = await params;
   const { org, orgs } = await requireOrg(orgSlug);
   return (
-    <SidebarProvider className="min-h-screen bg-background text-foreground antialiased flex">
+    <SidebarProvider>
       <AppSidebar currentOrg={org} orgs={orgs} />
       <div className="flex-1 flex flex-col min-w-0">
         <div className="flex-1 p-8 overflow-y-auto">{children}</div>

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Layers } from "lucide-react";
-import { GoogleButton } from "@/features/auth/components/google-button";
+import { GoogleButton } from "@/components/layout/google-button";
 import Link from "next/link";
 
 export function SignupForm({
