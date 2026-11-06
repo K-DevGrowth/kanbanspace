@@ -20,11 +20,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CreateWorkspaceDialog } from "@/components/create-workspace-dialog";
 
-interface Org {
+export interface Org {
   id: string;
   name: string;
   slug: string;
-  logo?: React.ReactNode;
+  logo?: React.ReactNode | string | null;
 }
 
 interface WorkspaceSwitcherProps {

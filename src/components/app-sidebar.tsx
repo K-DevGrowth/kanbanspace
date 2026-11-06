@@ -1,5 +1,5 @@
 import { NavMain } from "@/components/nav-main";
-import { WorkspaceSwitcher } from "@/components/workspace-switcher";
+import { WorkspaceSwitcher, type Org } from "@/components/workspace-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -93,8 +93,8 @@ export function AppSidebar({
   orgs = [],
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
-  currentOrg: any;
-  orgs?: any[];
+  currentOrg: Org;
+  orgs?: Org[];
 }) {
   return (
     <Sidebar className="border-r-0" {...props}>
