@@ -1,9 +1,23 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { requireOrg } from "@/lib/auth/session";
+import { requireMember } from "@/lib/auth/session";
 import { Suspense } from "react";
 
-export default async function WorkspaceLayout({
+export default function WorkspaceLayout({
+  children,
+  params,
+}: Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ orgSlug: string }>;
+}>) {
+  return (
+    <Suspense fallback={null}>
+      <WorkspaceShell params={params}>{children}</WorkspaceShell>
+    </Suspense>
+  );
+}
+
+async function WorkspaceShell({
   children,
   params,
 }: Readonly<{
@@ -11,35 +25,13 @@ export default async function WorkspaceLayout({
   params: Promise<{ orgSlug: string }>;
 }>) {
   const { orgSlug } = await params;
-  const { org, orgs } = await requireOrg(orgSlug);
+  const { org, orgs } = await requireMember(orgSlug);
   return (
     <SidebarProvider>
       <AppSidebar currentOrg={org} orgs={orgs} />
       <div className="flex-1 flex flex-col min-w-0">
-        <div className="flex-1 p-8 overflow-y-auto">
-          <Suspense fallback={null}>{children}</Suspense>
-        </div>
+        <div className="flex-1 p-8 overflow-y-auto">{children}</div>
       </div>
     </SidebarProvider>
   );
 }
-
-// async function WorkspaceShell({
-//   children,
-//   params,
-// }: Readonly<{
-//   children: React.ReactNode;
-//   params: Promise<{ orgSlug: string }>;
-// }>) {
-//   const { orgSlug } = await params;
-//   const { org } = await requireMember(orgSlug);
-//   const orgs = await getOrgs();
-//   return (
-//     <>
-//       <AppSidebar currentOrg={org} orgs={orgs} />
-//       <div className="flex-1 flex flex-col min-w-0">
-//         <div className="flex-1 p-8 overflow-y-auto">{children}</div>
-//       </div>
-//     </>
-//   );
-// }

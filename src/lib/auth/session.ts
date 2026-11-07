@@ -42,5 +42,5 @@ export const requireMember = cache(async (slug: string) => {
   });
   if (!role) notFound();
 
-  return { session, org, role };
+  return { session, org, orgs, role };
 });
