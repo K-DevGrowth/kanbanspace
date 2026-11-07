@@ -14,7 +14,6 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Callout } from "@/components/ui/callout";
-import { Kbd } from "@/components/ui/kbd";
 import { Container } from "@/components/ui/container";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -57,8 +56,6 @@ export function HeroSection() {
           {/* Micro text with Kbd */}
           <p className="text-xs text-muted-foreground flex items-center justify-center gap-1.5 pt-1">
             <span>Dễ dàng tìm kiếm mọi lúc với</span>
-            <Kbd>⌘</Kbd>
-            <Kbd>K</Kbd>
             <span>• Miễn phí không cần thẻ tín dụng</span>
           </p>
         </div>

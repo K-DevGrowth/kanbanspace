@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -17,8 +16,8 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronDownIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CreateWorkspaceDialog } from "@/components/create-workspace-dialog";
+import Link from "next/link";
 
 export interface Org {
   id: string;
@@ -37,7 +36,6 @@ export function WorkspaceSwitcher({
   orgs = [],
 }: WorkspaceSwitcherProps) {
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
-  const router = useRouter();
 
   if (!currentOrg) return null;
 
@@ -67,17 +65,16 @@ export function WorkspaceSwitcher({
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
                   Không gian làm việc
                 </DropdownMenuLabel>
-                {orgs.map((o, index) => (
+                {orgs.map((o) => (
                   <DropdownMenuItem
                     key={o.id || o.slug || o.name}
-                    onClick={() => router.push(`/w/${o.slug}`)}
+                    render={<Link href={`/w/${o.slug}`} prefetch={true} />}
                     className="gap-2 p-2 cursor-pointer"
                   >
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-xs border text-xs font-medium">
                       {o.name?.charAt(0)?.toUpperCase()}
                     </div>
                     <span className="truncate flex-1 min-w-0">{o.name}</span>
-                    <DropdownMenuShortcut className="shrink-0">⌘{index + 1}</DropdownMenuShortcut>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>

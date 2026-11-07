@@ -10,9 +10,15 @@ const createPool = () => {
   const pool = new Pool({
     connectionString: env.DATABASE_URL,
     ssl: true,
-    max: 2,
-    idleTimeoutMillis: 5_000,
+    max: 5,
+    idleTimeoutMillis: 10_000,
+    connectionTimeoutMillis: 10_000,
+    keepAlive: true,
   });
+  pool.on("error", (err) => {
+    console.error("[pg-pool] Lỗi đột ngột trên idle connection:", err);
+  });
+
   attachDatabasePool(pool);
   return pool;
 };

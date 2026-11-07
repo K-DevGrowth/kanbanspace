@@ -9,7 +9,6 @@ import {
 import {
   TerminalIcon,
   AudioLinesIcon,
-  SparklesIcon,
   HomeIcon,
   InboxIcon,
   CalendarIcon,
@@ -51,11 +50,6 @@ const data = {
       url: "#",
       icon: <InboxIcon />,
       badge: "10",
-    },
-    {
-      title: "Hỏi AI",
-      url: "#",
-      icon: <SparklesIcon />,
     },
   ],
   navSecondary: [

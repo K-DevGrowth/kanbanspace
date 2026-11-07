@@ -9,6 +9,12 @@ import * as schema from "../../db/schema/auth-schema";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60,
+    },
+  },
   emailAndPassword: { enabled: true },
   trustedOrigins: [
     "https://kanbanspace.site",
@@ -20,6 +26,9 @@ export const auth = betterAuth({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     },
+  },
+  rateLimit: {
+    storage: "database",
   },
   plugins: [
     organization({

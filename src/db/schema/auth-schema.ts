@@ -6,6 +6,8 @@ import {
   boolean,
   index,
   uniqueIndex,
+  integer,
+  bigint,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
@@ -134,6 +136,13 @@ export const invitation = pgTable(
     index("invitation_email_idx").on(table.email),
   ],
 );
+
+export const rateLimit = pgTable("rate_limit", {
+  id: text("id").primaryKey(),
+  key: text("key").notNull().unique(),
+  count: integer("count").notNull(),
+  lastRequest: bigint("last_request", { mode: "number" }).notNull(),
+});
 
 export const authRelations = defineRelationsPart(
   { user, session, account, verification, organization, member, invitation },

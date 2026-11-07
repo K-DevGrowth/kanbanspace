@@ -5,6 +5,7 @@ import {
   ownerAc,
   memberAc,
 } from "better-auth/plugins/organization/access";
+import { forbidden } from "next/navigation";
 
 const statement = {
   ...defaultStatements,
@@ -52,4 +53,8 @@ export function can(role: string, permissions: Permissions): boolean {
     const def = roles[r.trim() as WorkspaceRole];
     return def ? def.authorize(permissions as never).success : false;
   });
+}
+
+export function assertCan(role: string, permissions: Permissions) {
+  if (!can(role, permissions)) forbidden();
 }
