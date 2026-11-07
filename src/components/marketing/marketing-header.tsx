@@ -34,12 +34,6 @@ export function MarketingHeader() {
           >
             Tính năng
           </Link>
-          <Link
-            href="#design-system"
-            className="hover:text-foreground transition-colors"
-          >
-            Hệ thống Thiết kế
-          </Link>
         </nav>
 
         {/* Right CTAs */}

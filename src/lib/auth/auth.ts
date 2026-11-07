@@ -10,10 +10,16 @@ import * as schema from "../../db/schema/auth-schema";
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),
   emailAndPassword: { enabled: true },
+  trustedOrigins: [
+    "https://kanbanspace.site",
+    "https://www.kanbanspace.site",
+    "https://kdev-project-workspace.vercel.app",
+  ],
   socialProviders: {
     google: {
-      clientId: env.GOOGLE_CLIENT_ID!,
-      clientSecret: env.GOOGLE_CLIENT_SECRET!,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      requireEmailVerification: true,
     },
   },
   plugins: [

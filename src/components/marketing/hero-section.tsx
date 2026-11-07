@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-24">
+    <section className="relative overflow-hidden pt-12 pb-16 md:pt-16">
       <Container size="wide">
         {/* Editorial Hero Header */}
         <div className="mx-auto max-w-4xl text-center space-y-5">
@@ -51,15 +51,6 @@ export function HeroSection() {
             >
               <span>Dùng thử miễn phí</span>
               <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="#design-system"
-              className={cn(
-                buttonVariants({ size: "lg", variant: "outline" }),
-                "w-full sm:w-auto px-5",
-              )}
-            >
-              <span>Khám phá Hệ thống Thiết kế</span>
             </Link>
           </div>
 

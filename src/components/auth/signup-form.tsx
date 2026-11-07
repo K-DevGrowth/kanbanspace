@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Layers } from "lucide-react";
-import { GoogleButton } from "@/components/layout/google-button";
+import { GoogleButton } from "@/components/auth/google-button";
 import Link from "next/link";
 
 export function SignupForm({
@@ -57,9 +57,7 @@ export function SignupForm({
             />
           </Field>
           <Field>
-            <Button type="submit" disabled={true}>
-              Đăng ký
-            </Button>
+            <Button type="submit">Đăng ký</Button>
           </Field>
           <FieldSeparator>Hoặc tiếp tục với</FieldSeparator>
           <GoogleButton />
