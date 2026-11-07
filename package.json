@@ -15,6 +15,7 @@
     "@base-ui/react": "^1.9.0",
     "@better-auth/drizzle-adapter": "^1.7.14",
     "@neondatabase/serverless": "^1.2.0",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/functions": "^3.10.6",
     "better-auth": "^1.7.14",
     "class-variance-authority": "^0.7.1",
