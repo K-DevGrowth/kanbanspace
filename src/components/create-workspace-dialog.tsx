@@ -74,7 +74,7 @@ export function CreateWorkspaceDialog({
     onOpenChange(false);
 
     // Chuyển tới workspace mới
-    router.push(`/planify/${data.slug}`);
+    router.push(`/w/${data.slug}`);
     router.refresh();
   };
 

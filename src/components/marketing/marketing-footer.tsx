@@ -14,7 +14,7 @@ export function MarketingFooter() {
                 <Layers className="h-4 w-4" />
               </div>
               <span className="text-base font-bold tracking-tight text-foreground">
-                Planify
+                KanbanSpace
               </span>
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
@@ -93,7 +93,7 @@ export function MarketingFooter() {
 
         {/* Bottom bar */}
         <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p>© 2026 Planify Inc. Mọi quyền được bảo lưu.</p>
+          <p>© 2026 KanbanSpace Inc. Mọi quyền được bảo lưu.</p>
           <p className="text-[11px]">
             Lấy cảm hứng từ triết lý thiết kế tối giản, tập trung vào nội dung.
           </p>

@@ -3,7 +3,7 @@ import { Be_Vietnam_Pro, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Planify | Nền tảng Quản lý Dự án SaaS",
+  title: "KanbanSpace | Nền tảng Quản lý Dự án SaaS",
   description: "Nền tảng Quản lý Dự án SaaS Hiện đại, Tốc độ cao và Tối giản cho các đội ngũ công nghệ.",
 };
 

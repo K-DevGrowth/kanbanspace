@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function proxy(request: NextRequest) {
   if (getSessionCookie(request)) {
-    return NextResponse.redirect(new URL("/planify", request.url));
+    return NextResponse.redirect(new URL("/w", request.url));
   }
   return NextResponse.next();
 }

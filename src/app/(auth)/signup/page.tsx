@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SignupForm } from "@/components/auth/signup-form";
 
 export const metadata: Metadata = {
-  title: "Đăng nhập | Planify",
-  description: "Đăng nhập hoặc đăng ký tài khoản Planify của bạn.",
+  title: "Đăng nhập | KanbanSpace",
+  description: "Đăng nhập hoặc đăng ký tài khoản KanbanSpace của bạn.",
 };
 
 export default function SignupPage() {

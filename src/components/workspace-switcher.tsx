@@ -70,7 +70,7 @@ export function WorkspaceSwitcher({
                 {orgs.map((o, index) => (
                   <DropdownMenuItem
                     key={o.id || o.slug || o.name}
-                    onClick={() => router.push(`/planify/${o.slug}`)}
+                    onClick={() => router.push(`/w/${o.slug}`)}
                     className="gap-2 p-2 cursor-pointer"
                   >
                     <div className="flex size-6 shrink-0 items-center justify-center rounded-xs border text-xs font-medium">

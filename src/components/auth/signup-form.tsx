@@ -40,9 +40,9 @@ export function SignupForm({
               <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-2xs group-hover:opacity-90 transition-opacity">
                 <Layers className="h-5 w-5" />
               </div>
-              <span className="sr-only">Planify</span>
+              <span className="sr-only">KanbanSpace</span>
             </a>
-            <h1 className="text-xl font-bold">Tạo tài khoản Planify</h1>
+            <h1 className="text-xl font-bold">Tạo tài khoản KanbanSpace</h1>
             <FieldDescription>
               Đã có tài khoản? <a href="#">Đăng nhập</a>
             </FieldDescription>
@@ -78,7 +78,7 @@ export function SignupForm({
         >
           Chính sách quyền riêng tư
         </a>{" "}
-        của Planify.
+        của KanbanSpace.
       </FieldDescription>
     </div>
   );

@@ -39,7 +39,7 @@ export default function NameWorkspace() {
       return;
     }
 
-    router.push(`/planify/${data.slug}`);
+    router.push(`/w/${data.slug}`);
   };
 
   return (

@@ -6,7 +6,7 @@ import { Suspense } from "react";
 const OnboardingContent = async () => {
   await requireSession();
   const orgs = await getOrgs();
-  if (orgs.length > 0) redirect("/planify");
+  if (orgs.length > 0) redirect("/w");
   return <NameWorkspace />;
 };
 

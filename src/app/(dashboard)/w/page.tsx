@@ -8,7 +8,7 @@ async function WorkspaceHub() {
   const active =
     orgs.find((o) => o.id === session.session.activeOrganizationId) ?? orgs[0];
 
-  return redirect(`/planify/${active.slug}`);
+  return redirect(`/w/${active.slug}`);
 }
 
 export default function WorkspaceHubPage() {

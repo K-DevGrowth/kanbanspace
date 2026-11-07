@@ -78,7 +78,7 @@ export function HeroSection() {
                   <div className="w-2.5 h-2.5 rounded-full bg-border" />
                 </div>
                 <span className="text-[11px] font-medium text-muted-foreground pl-2 border-l border-border/80">
-                  Planify / Dự án Phát triển Sản phẩm SaaS / Q4 Sprint
+                  KanbanSpace / Dự án Phát triển Sản phẩm SaaS / Q4 Sprint
                 </span>
               </div>
               <div className="flex items-center gap-1.5">

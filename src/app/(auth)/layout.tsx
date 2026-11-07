@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/session";
 
 async function RedirectIfAuthenticated() {
-  if (await getSession()) redirect("/planify");
+  if (await getSession()) redirect("/w");
   return null;
 }
 

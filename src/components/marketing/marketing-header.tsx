@@ -22,7 +22,7 @@ export function MarketingHeader() {
             <Layers className="h-4 w-4" />
           </div>
           <span className="text-base font-bold tracking-tight text-foreground">
-            Planify
+            KanbanSpace
           </span>
         </Link>
 
