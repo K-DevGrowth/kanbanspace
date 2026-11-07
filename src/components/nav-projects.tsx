@@ -15,6 +15,7 @@ import {
   // SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { ChevronRightIcon, PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 export function NavProjects({
   projects,
@@ -29,7 +30,7 @@ export function NavProjects({
       {projects?.map((project) => (
         <Collapsible key="Dự án">
           <SidebarMenuItem>
-            <SidebarMenuButton render={<a href="#" />}>
+            <SidebarMenuButton render={<Link href="#" />}>
               <span>{project.emoji}</span>
               <span>Dự án</span>
             </SidebarMenuButton>

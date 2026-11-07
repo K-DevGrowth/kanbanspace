@@ -14,7 +14,7 @@ export default function AuthLayout({
 }>) {
   return (
     <>
-      <Suspense fallback={null}>
+      <Suspense>
         <RedirectIfAuthenticated />
       </Suspense>
       {children}

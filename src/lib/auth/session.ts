@@ -3,9 +3,10 @@ import { auth } from "./auth";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 
-export const getSession = cache(async () =>
-  auth.api.getSession({ headers: await headers() }),
-);
+export const getSession = cache(async () => {
+  const h = await headers();
+  return auth.api.getSession({ headers: h });
+});
 
 export const getOrgs = cache(async () =>
   auth.api.listOrganizations({ headers: await headers() }),
