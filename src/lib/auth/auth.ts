@@ -44,15 +44,15 @@ export const auth = betterAuth({
       },
     }),
     nextCookies(),
-    emailOTP({
-      async sendVerificationOTP({ email, otp, type }) {
-        void resend.emails.send({
-          from: "KanbanSpace <noreply@kanbanspace.site>",
-          to: email,
-          subject: type === "sign-in" ? "Mã xác thực OTP KanbanSpace" : "",
-          html: `<p>Mã OTP của bạn là: <strong>${otp}</strong></p>`,
-        });
-      },
-    }),
+    // emailOTP({
+    //   async sendVerificationOTP({ email, otp, type }) {
+    //     void resend.emails.send({
+    //       from: "KanbanSpace <noreply@kanbanspace.site>",
+    //       to: email,
+    //       subject: type === "sign-in" ? "Mã xác thực OTP KanbanSpace" : "",
+    //       html: `<p>Mã OTP của bạn là: <strong>${otp}</strong></p>`,
+    //     });
+    //   },
+    // }),
   ],
 });

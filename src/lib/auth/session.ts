@@ -14,7 +14,7 @@ export const getOrgs = cache(async () =>
 
 export const requireSession = cache(async () => {
   const session = await getSession();
-  if (!session) redirect("/signup");
+  if (!session) redirect("/signin");
   return session;
 });
 

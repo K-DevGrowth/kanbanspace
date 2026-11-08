@@ -39,7 +39,7 @@ export function MarketingHeader() {
         {/* Right CTAs */}
         <div className="hidden sm:flex items-center gap-2.5">
           <Link
-            href="/signup"
+            href="/signin"
             className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
           >
             Đăng nhập
@@ -58,7 +58,7 @@ export function MarketingHeader() {
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 sm:hidden">
           <Link
-            href="/signup"
+            href="/signin"
             className={cn(buttonVariants({ size: "xs", variant: "default" }))}
           >
             Dùng thử
@@ -102,7 +102,7 @@ export function MarketingHeader() {
           </nav>
           <div className="mt-4 pt-4 border-t border-border flex flex-col gap-2">
             <Link
-              href="/signup"
+              href="/signin"
               onClick={() => setMobileMenuOpen(false)}
               className={cn(
                 buttonVariants({ variant: "outline", size: "sm" }),

@@ -118,7 +118,7 @@ export function NavUser({
               <DropdownMenuItem
                 onClick={async () => {
                   await authClient.signOut();
-                  router.push("/signup");
+                  router.push("/signin");
                   router.refresh();
                 }}
                 className="cursor-pointer"
