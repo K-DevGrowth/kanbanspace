@@ -23,6 +23,7 @@ jobs:
       BETTER_AUTH_URL: http://localhost:3000
       GOOGLE_CLIENT_ID: ci-placeholder
       GOOGLE_CLIENT_SECRET: ci-placeholder
+      RESEND_API_KEY: re_ci_placeholder
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
