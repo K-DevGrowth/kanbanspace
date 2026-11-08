@@ -12,6 +12,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { authClient } from "@/lib/auth/auth-client";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 type OtpFormProps = {
   email: string;
@@ -82,6 +83,7 @@ export function OtpForm({ email, onBack }: OtpFormProps) {
             onChange={setOtp}
             onComplete={verify}
             disabled={loading}
+            pattern={REGEXP_ONLY_DIGITS}
             autoFocus
           >
             <InputOTPGroup>
