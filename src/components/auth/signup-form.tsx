@@ -3,25 +3,55 @@
 import { cn } from "cn";
 
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field";
+import { Field, FieldDescription, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Layers } from "lucide-react";
+import { ArrowLeft, Layers, Loader2 } from "lucide-react";
 import { GoogleButton } from "@/components/auth/google-button";
 import Link from "next/link";
+import { useState } from "react";
+import { authClient } from "@/lib/auth/auth-client";
+import { OtpForm } from "./otp-form";
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState<"email" | "otp">("email");
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const { error } = await authClient.emailOtp.sendVerificationOtp({
+      email,
+      type: "sign-in",
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setError("Không gửi được mã, vui lòng thử lại");
+      return;
+    }
+
+    setStep("otp");
+  }
+
+  if (step === "otp") {
+    return (
+      <div className={cn("flex flex-col gap-6", className)} {...props}>
+        <OtpForm email={email} onBack={() => setStep("email")} />
+      </div>
+    );
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <Link
             href="/"
@@ -43,43 +73,34 @@ export function SignupForm({
               <span className="sr-only">KanbanSpace</span>
             </a>
             <h1 className="text-xl font-bold">Tạo tài khoản KanbanSpace</h1>
-            <FieldDescription>
-              Đã có tài khoản? <a href="#">Đăng nhập</a>
-            </FieldDescription>
           </div>
           <Field>
-            <FieldLabel htmlFor="email">Địa chỉ email</FieldLabel>
             <Input
               id="email"
               type="email"
               placeholder="k@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
+            {error && <p className="text-sm text-destructive">{error}</p>}
           </Field>
-          <Field>
-            <Button type="submit">Đăng ký</Button>
-          </Field>
-          <FieldSeparator>Hoặc tiếp tục với</FieldSeparator>
-          <GoogleButton />
+          <div className="grid grid-cols-2 items-center gap-3">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full h-9 gap-2 text-xs font-medium shadow-xs"
+            >
+              {loading && <Loader2 className="animate-spin h-4 w-4 shrink-0" />}
+              <span>{loading ? "Đang gửi..." : "Đăng ký"}</span>
+            </Button>
+            <GoogleButton className="w-full h-9" />
+          </div>
+          <FieldDescription>
+            Đã có tài khoản? <a href="#">Đăng nhập</a>
+          </FieldDescription>
         </FieldGroup>
       </form>
-      <FieldDescription className="px-4 text-center text-xs text-muted-foreground leading-normal">
-        Bằng việc tiếp tục, bạn đồng ý với{" "}
-        <a
-          href="#"
-          className="underline underline-offset-4 hover:text-foreground transition-colors"
-        >
-          Điều khoản dịch vụ
-        </a>{" "}
-        và{" "}
-        <a
-          href="#"
-          className="underline underline-offset-4 hover:text-foreground transition-colors"
-        >
-          Chính sách quyền riêng tư
-        </a>{" "}
-        của KanbanSpace.
-      </FieldDescription>
     </div>
   );
 }

@@ -1,11 +1,14 @@
+import { Resend } from "resend";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
-import { organization } from "better-auth/plugins";
+import { emailOTP, organization } from "better-auth/plugins";
 import { db } from "@/db/client";
 import { ac, roles } from "./permissions";
 import { env } from "@/lib/env";
 import * as schema from "../../db/schema/auth-schema";
+
+const resend = new Resend(env.RESEND_API_KEY);
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),
@@ -41,5 +44,15 @@ export const auth = betterAuth({
       },
     }),
     nextCookies(),
+    emailOTP({
+      async sendVerificationOTP({ email, otp, type }) {
+        void resend.emails.send({
+          from: "KanbanSpace <noreply@kanbanspace.site>",
+          to: email,
+          subject: type === "sign-in" ? "Mã xác thực OTP KanbanSpace" : "",
+          html: `<p>Mã OTP của bạn là: <strong>${otp}</strong></p>`,
+        });
+      },
+    }),
   ],
 });

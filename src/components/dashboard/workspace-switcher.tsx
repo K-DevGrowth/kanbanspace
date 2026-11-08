@@ -13,10 +13,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { CheckIcon, ChevronDownIcon, PlusIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDown, Plus } from "lucide-react";
 import { useState } from "react";
-import { CreateWorkspaceDialog } from "@/components/create-workspace-dialog";
+import { CreateWorkspaceDialog } from "@/components/dashboard/create-workspace-dialog";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth/auth-client";
@@ -37,6 +38,7 @@ export function WorkspaceSwitcher({
   currentOrg: currentOrgProp,
   orgs = [],
 }: WorkspaceSwitcherProps) {
+  const { isMobile } = useSidebar();
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
   const params = useParams();
   const orgSlug = (params?.orgSlug as string) || "";
@@ -53,20 +55,25 @@ export function WorkspaceSwitcher({
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger
-              render={<SidebarMenuButton className="w-full" />}
+              render={
+                <SidebarMenuButton
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  size="lg"
+                />
+              }
             >
-              <div className="flex aspect-square size-5 shrink-0 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground font-semibold text-xs">
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 {activeOrg?.name?.charAt(0)?.toUpperCase()}
               </div>
-              <span className="truncate font-medium flex-1 text-left min-w-0">
-                {activeOrg?.name}
-              </span>
-              <ChevronDownIcon className="ml-auto size-4 shrink-0 opacity-50" />
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">{activeOrg?.name}</span>
+              </div>
+              <ChevronsUpDown className="ml-auto" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-64 rounded-lg"
+              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
               align="start"
-              side="bottom"
+              side={isMobile ? "bottom" : "right"}
               sideOffset={4}
             >
               <DropdownMenuGroup>
@@ -86,7 +93,7 @@ export function WorkspaceSwitcher({
                             .catch(() => {});
                         }
                       }}
-                      className="gap-2 p-2 cursor-pointer flex items-center justify-between"
+                      className="gap-2 p-2"
                     >
                       <div className="flex items-center gap-2 min-w-0 flex-1">
                         <div className="flex size-6 shrink-0 items-center justify-center rounded-xs border text-xs font-medium">
@@ -106,11 +113,11 @@ export function WorkspaceSwitcher({
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem
+                  className="gap-2 p-2"
                   onClick={() => setOpenCreateDialog(true)}
-                  className="gap-2 p-2 cursor-pointer"
                 >
-                  <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                    <PlusIcon className="size-4" />
+                  <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
+                    <Plus className="size-4" />
                   </div>
                   <div className="font-medium text-muted-foreground">
                     Thêm không gian làm việc
