@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KanbanSpace
 
-## Getting Started
+Xây dựng nền tảng quản lý dự án và công việc theo mô hình SaaS (Software as a Service) hiện đại, hỗ trợ cộng tác nhóm với bảng Kanban trực quan và quản lý không gian làm việc (workspace) đa tổ chức.
 
-First, run the development server:
+---
+
+## 🚀 Công nghệ sử dụng (Tech Stack)
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack, React 19)
+- **Database & ORM**: PostgreSQL, [Drizzle ORM](https://orm.drizzle.team/)
+- **Authentication**: [Better Auth](https://www.better-auth.com/) (Google OAuth, Email/Password, Email OTP)
+- **UI & Styling**: [Tailwind CSS v4](https://tailwindcss.com/), Base UI, [Lucide React](https://lucide.dev/)
+- **Email Service**: [Resend](https://resend.com/)
+
+---
+
+## 🛠️ Cài đặt & Khởi chạy (Getting Started)
+
+### 1. Cài đặt dependencies
+
+```bash
+npm install
+```
+
+### 2. Cấu hình biến môi trường
+
+Tạo file `.env.local` ở thư mục gốc với các thông tin sau:
+
+```env
+DATABASE_URL="postgresql://user:password@host/database?sslmode=require"
+BETTER_AUTH_SECRET="your-better-auth-secret"
+BETTER_AUTH_URL="http://localhost:3000"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+# Resend
+RESEND_API_KEY="re_your_resend_api_key"
+```
+
+### 3. Đồng bộ Database
+
+```bash
+npm run db:generate   # Tạo migration từ schema
+npm run db:migrate    # Cập nhật schema lên database
+```
+
+### 4. Khởi chạy ứng dụng
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Truy cập [http://localhost:3000](http://localhost:3000) trên trình duyệt để sử dụng.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Các lệnh thường dùng
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Lệnh | Mô tả |
+| :--- | :--- |
+| `npm run dev` | Khởi chạy server development (Turbopack) |
+| `npm run build` | Build ứng dụng cho môi trường production |
+| `npm run start` | Chạy ứng dụng production sau khi build |
+| `npm run lint` | Kiểm tra quy chuẩn code bằng ESLint |
+| `npm run typecheck` | Kiểm tra kiểu dữ liệu với TypeScript |
+| `npm run db:generate` | Sinh file migration Drizzle |
+| `npm run db:migrate` | Áp dụng migration vào cơ sở dữ liệu |
