@@ -27,6 +27,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavUser({
   user,
@@ -95,23 +96,8 @@ export function NavUser({
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <Sparkles />
-                  Nâng cấp lên Pro
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>
                   <BadgeCheck />
-                  Tài khoản
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <CreditCard />
-                  Thanh toán
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Bell />
-                  Thông báo
+                  Cài đặt
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />

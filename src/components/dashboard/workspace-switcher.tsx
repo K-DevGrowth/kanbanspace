@@ -1,5 +1,10 @@
 "use client";
 
+import * as React from "react";
+import { ChevronDown, Plus } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,47 +12,85 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
-import { CheckIcon, ChevronsUpDown, Plus } from "lucide-react";
-import { useState } from "react";
 import { CreateWorkspaceDialog } from "@/components/dashboard/create-workspace-dialog";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import { authClient } from "@/lib/auth/auth-client";
+import { cn } from "@/lib/utils";
 
-export interface Org {
-  id: string;
+export interface Team {
+  id?: string;
   name: string;
-  slug: string;
-  logo?: React.ReactNode | string | null;
+  logo?: React.ElementType | React.ReactNode | string | null;
+  plan?: string;
+  slug?: string;
 }
 
+export type Org = Team;
+
 interface WorkspaceSwitcherProps {
-  currentOrg?: Org;
-  orgs: Org[];
+  teams?: Team[];
+  orgs?: Team[];
+  currentOrg?: Team;
+}
+
+function renderLogo(
+  logo: React.ElementType | React.ReactNode | string | null | undefined,
+  name?: string,
+  className = "size-3",
+) {
+  if (React.isValidElement(logo)) {
+    return React.cloneElement(
+      logo as React.ReactElement<{ className?: string }>,
+      {
+        className: cn(
+          (logo.props as { className?: string })?.className,
+          className,
+        ),
+      },
+    );
+  }
+
+  if (typeof logo === "function") {
+    const LogoComponent = logo as React.ElementType;
+    return <LogoComponent className={className} />;
+  }
+
+  return (
+    <span className="text-[10px] font-bold leading-none">
+      {name?.charAt(0)?.toUpperCase() ?? "W"}
+    </span>
+  );
 }
 
 export function WorkspaceSwitcher({
+  teams,
+  orgs,
   currentOrg: currentOrgProp,
-  orgs = [],
 }: WorkspaceSwitcherProps) {
-  const { isMobile } = useSidebar();
-  const [openCreateDialog, setOpenCreateDialog] = useState(false);
+  const items = teams ?? orgs ?? [];
   const params = useParams();
   const orgSlug = (params?.orgSlug as string) || "";
+  const [openCreateDialog, setOpenCreateDialog] = React.useState(false);
+  const [selectedTeam, setSelectedTeam] = React.useState<Team | null>(null);
 
-  // Tự động tìm workspace tương ứng với route hiện tại trên URL
-  const activeOrg =
-    orgs.find((o) => o.slug === orgSlug) || currentOrgProp || orgs[0];
+  const activeTeam =
+    selectedTeam ??
+    items.find((item) => item.slug === orgSlug) ??
+    currentOrgProp ??
+    items[0];
 
-  if (!activeOrg && orgs.length === 0) return null;
+  if (!activeTeam && items.length === 0) {
+    return null;
+  }
+
+  const current = activeTeam || items[0];
 
   return (
     <>
@@ -55,57 +98,50 @@ export function WorkspaceSwitcher({
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger
-              render={
-                <SidebarMenuButton
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                  size="lg"
-                />
-              }
+              render={<SidebarMenuButton className="w-fit px-1.5" />}
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                {activeOrg?.name?.charAt(0)?.toUpperCase()}
+              <div className="flex aspect-square size-5 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+                {renderLogo(current?.logo, current?.name, "size-3")}
               </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeOrg?.name}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto" />
+              <span className="truncate font-medium">{current?.name}</span>
+              <ChevronDown className="opacity-50" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+              className="w-64 rounded-lg"
               align="start"
-              side={isMobile ? "bottom" : "right"}
+              side="bottom"
               sideOffset={4}
             >
               <DropdownMenuGroup>
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Không gian làm việc
+                  Teams
                 </DropdownMenuLabel>
-                {orgs.map((o) => {
-                  const isSelected = o.slug === activeOrg?.slug;
+                {items.map((team, index) => {
+                  const handleClick = () => {
+                    setSelectedTeam(team);
+                    if (team.id) {
+                      authClient.organization
+                        .setActive({ organizationId: team.id })
+                        .catch(() => {});
+                    }
+                  };
+
                   return (
                     <DropdownMenuItem
-                      key={o.id || o.slug || o.name}
-                      render={<Link href={`/w/${o.slug}`} prefetch={true} />}
-                      onClick={() => {
-                        if (o.id) {
-                          authClient.organization
-                            .setActive({ organizationId: o.id })
-                            .catch(() => {});
-                        }
-                      }}
+                      key={team.id || team.slug || team.name}
+                      onClick={handleClick}
+                      render={
+                        team.slug ? (
+                          <Link href={`/${team.slug}`} />
+                        ) : undefined
+                      }
                       className="gap-2 p-2"
                     >
-                      <div className="flex items-center gap-2 min-w-0 flex-1">
-                        <div className="flex size-6 shrink-0 items-center justify-center rounded-xs border text-xs font-medium">
-                          {o.name?.charAt(0)?.toUpperCase()}
-                        </div>
-                        <span className="truncate flex-1 min-w-0 font-medium">
-                          {o.name}
-                        </span>
+                      <div className="flex size-6 items-center justify-center rounded-xs border">
+                        {renderLogo(team.logo, team.name, "size-4 shrink-0")}
                       </div>
-                      {isSelected && (
-                        <CheckIcon className="size-4 shrink-0 opacity-80" />
-                      )}
+                      <span className="truncate flex-1">{team.name}</span>
+                      <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   );
                 })}
@@ -116,11 +152,11 @@ export function WorkspaceSwitcher({
                   className="gap-2 p-2"
                   onClick={() => setOpenCreateDialog(true)}
                 >
-                  <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
+                  <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                     <Plus className="size-4" />
                   </div>
                   <div className="font-medium text-muted-foreground">
-                    Thêm không gian làm việc
+                    Add team
                   </div>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -136,3 +172,5 @@ export function WorkspaceSwitcher({
     </>
   );
 }
+
+export { WorkspaceSwitcher as TeamSwitcher };

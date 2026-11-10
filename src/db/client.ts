@@ -26,4 +26,10 @@ const createPool = () => {
 export const pool = globalForDb.pgPool ?? createPool();
 if (env.NODE_ENV !== "production") globalForDb.pgPool = pool;
 
-export const db = drizzle({ client: pool, relations: schema.authRelations });
+export const db = drizzle({
+  client: pool,
+  relations: {
+    ...schema.authRelations,
+    ...schema.projectRelations,
+  },
+});
