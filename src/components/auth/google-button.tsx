@@ -29,7 +29,10 @@ export function GoogleButton({ className }: { className?: string } = {}) {
       type="button"
       onClick={signIn}
       disabled={loadingType === "google"}
-      className={cn("w-full h-9 gap-2 text-xs font-medium shadow-xs", className)}
+      className={cn(
+        "w-full h-9 gap-2 text-xs font-medium shadow-xs",
+        className,
+      )}
     >
       {loadingType === "google" ? (
         <Loader2 className="animate-spin h-4 w-4" />

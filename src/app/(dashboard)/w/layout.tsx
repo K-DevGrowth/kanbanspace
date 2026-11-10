@@ -1,20 +1,7 @@
 import { cookies } from "next/headers";
 import { Suspense } from "react";
-import {
-  TerminalIcon,
-  AudioLinesIcon,
-  HomeIcon,
-  InboxIcon,
-  CalendarIcon,
-  Settings2Icon,
-  BlocksIcon,
-  MessageCircleQuestionIcon,
-  FolderKanban,
-} from "lucide-react";
+
 import { NavActions } from "@/components/dashboard/nav-actions";
-import { NavMain } from "@/components/dashboard/nav-main";
-import { NavProjects } from "@/components/dashboard/nav-projects";
-import { NavUser } from "@/components/dashboard/nav-user";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -23,17 +10,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
   SidebarInset,
   SidebarProvider,
-  SidebarRail,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
 import { requireOrgs } from "@/lib/auth/session";
+import { AppSidebar } from "@/components/dashboard/app-sidebar";
+
+export const instant = false;
 
 export default function DashboardWorkspaceLayout({
   children,
@@ -56,20 +40,7 @@ async function WorkspaceShell({
 
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
-      <Sidebar>
-        <SidebarHeader>
-          <WorkspaceSwitcher orgs={orgs} />
-          <NavMain items={data.navMain} />
-        </SidebarHeader>
-        <SidebarContent className="flex flex-col gap-2 p-2">
-          <NavProjects projects={data.projects} />
-          <NavMain items={data.navSecondary} />
-        </SidebarContent>
-        <SidebarFooter>
-          <NavUser user={session.user} />
-        </SidebarFooter>
-        <SidebarRail />
-      </Sidebar>
+      <AppSidebar orgs={orgs} session={session} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
           <div className="flex flex-1 items-center gap-2 px-3">
@@ -108,65 +79,3 @@ export function ShellSkeleton() {
     </div>
   );
 }
-
-const data = {
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: <TerminalIcon />,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: <AudioLinesIcon />,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: <TerminalIcon />,
-      plan: "Free",
-    },
-  ],
-  navMain: [
-    {
-      title: "Tổng quan",
-      url: "#",
-      icon: <HomeIcon />,
-      isActive: true,
-    },
-    {
-      title: "Hộp thư",
-      url: "#",
-      icon: <InboxIcon />,
-      badge: "10",
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Lịch",
-      url: "#",
-      icon: <CalendarIcon />,
-    },
-    {
-      title: "Cài đặt",
-      url: "#",
-      icon: <Settings2Icon />,
-    },
-    {
-      title: "Mẫu dự án",
-      url: "#",
-      icon: <BlocksIcon />,
-    },
-    {
-      title: "Giúp đỡ",
-      url: "#",
-      icon: <MessageCircleQuestionIcon />,
-    },
-  ],
-  projects: [
-    {
-      name: "Dự án",
-      emoji: <FolderKanban />,
-    },
-  ],
-};

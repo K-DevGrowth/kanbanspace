@@ -1,6 +1,8 @@
 import { requireMember } from "@/lib/auth/session";
 import { Suspense } from "react";
 
+export const instant = false;
+
 export default function WorkspaceSlugLayout({
   children,
   params,
