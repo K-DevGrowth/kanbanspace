@@ -73,7 +73,6 @@ export function WorkspaceSwitcher({
   orgSlug,
 }: WorkspaceSwitcherProps) {
   const items = teams ?? orgs ?? [];
-  const [openCreateDialog, setOpenCreateDialog] = React.useState(false);
 
   // Tìm active team theo currentOrg hoặc orgSlug
   const activeTeam =

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { authClient } from "@/lib/auth/auth-client";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function generateSlug(text: string): string {
   return text
@@ -26,21 +26,6 @@ const OnboardingForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  // Reset toàn bộ form và error khi vào trang hoặc rời khỏi trang
-  useEffect(() => {
-    setName("");
-    setSlug("");
-    setIsSlugEdited(false);
-    setErrorMessage("");
-
-    return () => {
-      setName("");
-      setSlug("");
-      setIsSlugEdited(false);
-      setErrorMessage("");
-    };
-  }, []);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newName = e.target.value;
