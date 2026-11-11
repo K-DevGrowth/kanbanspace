@@ -16,6 +16,8 @@ import {
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { cookies } from "next/headers";
 
+export const instant = false;
+
 export default function WorkspaceSlugLayout({
   children,
   params,

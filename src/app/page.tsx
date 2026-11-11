@@ -46,6 +46,11 @@ export default function HomePage() {
                 Dùng thử miễn phí
               </Button>
             </Link>
+            <Link href="/signin">
+              <Button variant="outline" size="lg" className="h-11 px-8 text-sm">
+                Đăng nhập
+              </Button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 text-left">
