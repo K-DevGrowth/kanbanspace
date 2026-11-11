@@ -46,38 +46,33 @@ export default function HomePage() {
                 Dùng thử miễn phí
               </Button>
             </Link>
-            <Link href="/signin">
-              <Button variant="outline" size="lg" className="h-11 px-8 text-sm">
-                Đăng nhập
-              </Button>
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 text-left">
             <div className="rounded-xl border bg-card p-5 shadow-xs">
               <Zap className="h-6 w-6 text-primary mb-2" />
-              <h3 className="font-semibold text-sm">O(1) Drag and Drop</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Fractional indexing updates only 1 row per card move. No
-                cascading re-indexes.
+              <h3 className="font-semibold text-sm">Thao tác mượt mà</h3>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                Kéo thả thẻ công việc tức thì, phản hồi nhanh chóng mà không gây
+                tải lại hay đơ bảng Kanban.
               </p>
             </div>
 
             <div className="rounded-xl border bg-card p-5 shadow-xs">
               <ShieldCheck className="h-6 w-6 text-primary mb-2" />
-              <h3 className="font-semibold text-sm">Strict Tenant Isolation</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Data-access layer withOrg enforces organization boundary on
-                every SQL query.
+              <h3 className="font-semibold text-sm">Bảo mật dữ liệu</h3>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                Mỗi doanh nghiệp và nhóm làm việc được tách biệt hoàn toàn, đảm
+                bảo an toàn thông tin tối đa.
               </p>
             </div>
 
             <div className="rounded-xl border bg-card p-5 shadow-xs">
               <Users className="h-6 w-6 text-primary mb-2" />
-              <h3 className="font-semibold text-sm">Role-based Access</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Built-in organization invitation flow with Owner, Admin, and
-                Member permissions.
+              <h3 className="font-semibold text-sm">Phân quyền linh hoạt</h3>
+              <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                Dễ dàng mời đồng nghiệp vào dự án và phân cấp quyền hạn rõ ràng
+                theo từng vị trí công việc.
               </p>
             </div>
           </div>

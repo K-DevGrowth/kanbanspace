@@ -114,7 +114,7 @@ export function WorkspaceSwitcher({
             >
               <DropdownMenuGroup>
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Teams
+                  Không gian làm việc
                 </DropdownMenuLabel>
                 {items.map((team, index) => {
                   const handleClick = () => {
@@ -132,7 +132,7 @@ export function WorkspaceSwitcher({
                       onClick={handleClick}
                       render={
                         team.slug ? (
-                          <Link href={`/${team.slug}`} />
+                          <Link href={`/w/${team.slug}`} />
                         ) : undefined
                       }
                       className="gap-2 p-2"
@@ -141,7 +141,6 @@ export function WorkspaceSwitcher({
                         {renderLogo(team.logo, team.name, "size-4 shrink-0")}
                       </div>
                       <span className="truncate flex-1">{team.name}</span>
-                      <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   );
                 })}
@@ -156,7 +155,7 @@ export function WorkspaceSwitcher({
                     <Plus className="size-4" />
                   </div>
                   <div className="font-medium text-muted-foreground">
-                    Add team
+                    Thêm không gian làm việc
                   </div>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
