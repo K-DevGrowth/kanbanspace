@@ -44,7 +44,7 @@ async function OnboardingPage() {
 
       {/* Nội dung trung tâm */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-[420px] space-y-8">
+        <div className="w-full max-w-105 space-y-8">
           {/* Tiêu đề & Giới thiệu */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">

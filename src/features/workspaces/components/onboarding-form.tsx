@@ -126,7 +126,7 @@ const OnboardingForm = () => {
             name="url"
             autoComplete="off"
             placeholder="nhom-cong-nghe"
-            className="h-10 rounded-lg border-input bg-background pl-[32px] pr-3 text-sm placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring"
+            className="h-10 rounded-lg border-input bg-background pl-8 pr-3 text-sm placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring"
             required
             value={slug}
             onChange={handleSlugChange}
