@@ -2,6 +2,14 @@ import { requireOrgs } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
+export default function WorkspaceHubPage() {
+  return (
+    <Suspense fallback={null}>
+      <WorkspaceHub />
+    </Suspense>
+  );
+}
+
 async function WorkspaceHub() {
   const { session, orgs } = await requireOrgs();
 
@@ -9,12 +17,4 @@ async function WorkspaceHub() {
     orgs.find((o) => o.id === session.session.activeOrganizationId) ?? orgs[0];
 
   return redirect(`/w/${active.slug}`);
-}
-
-export default function WorkspaceHubPage() {
-  return (
-    <Suspense fallback={null}>
-      <WorkspaceHub />
-    </Suspense>
-  );
 }

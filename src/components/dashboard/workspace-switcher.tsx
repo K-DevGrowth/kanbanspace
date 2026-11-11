@@ -132,7 +132,7 @@ export function WorkspaceSwitcher({
                       onClick={handleClick}
                       render={
                         team.slug ? (
-                          <Link href={`/${team.slug}`} />
+                          <Link href={`/w/${team.slug}`} />
                         ) : undefined
                       }
                       className="gap-2 p-2"

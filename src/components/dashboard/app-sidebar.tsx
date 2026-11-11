@@ -1,18 +1,3 @@
-"use client";
-
-import * as React from "react";
-import {
-  TerminalIcon,
-  AudioLinesIcon,
-  HomeIcon,
-  InboxIcon,
-  CalendarIcon,
-  Settings2Icon,
-  BlocksIcon,
-  MessageCircleQuestionIcon,
-  FolderKanban,
-} from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -25,58 +10,35 @@ import { NavProjects } from "./nav-projects";
 import { NavUser } from "./nav-user";
 import { NavMain } from "./nav-main";
 
-const data = {
-  navMain: [
-    {
-      title: "Tổng quan",
-      url: "#",
-      icon: <HomeIcon />,
-      isActive: true,
-    },
-    {
-      title: "Hộp thư",
-      url: "#",
-      icon: <InboxIcon />,
-      badge: "10",
-    },
-  ],
-  projects: [
-    {
-      name: "Dự án",
-      emoji: <FolderKanban />,
-    },
-  ],
-};
-
 export function AppSidebar({
-  orgs = [],
-  session,
+  orgs,
+  orgSlug,
+  user,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   orgs?: Org[];
-  session: {
-    user: {
-      id: string;
-      createdAt: Date;
-      updatedAt: Date;
-      email: string;
-      emailVerified: boolean;
-      name: string;
-      image?: string | null;
-    };
+  orgSlug: string;
+  user: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    email: string;
+    emailVerified: boolean;
+    name: string;
+    image?: string | null | undefined;
   };
 }) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
         <WorkspaceSwitcher orgs={orgs} />
-        <NavMain items={data.navMain} />
+        <NavMain orgSlug={orgSlug} />
       </SidebarHeader>
       <SidebarContent className="flex flex-col gap-2 p-2">
-        <NavProjects projects={data.projects} />
+        <NavProjects />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={session.user} />
+        <NavUser orgSlug={orgSlug} user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

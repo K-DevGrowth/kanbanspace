@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -30,8 +23,10 @@ import {
 import Link from "next/link";
 
 export function NavUser({
+  orgSlug,
   user,
 }: {
+  orgSlug: string;
   user: {
     id: string;
     createdAt: Date;
@@ -95,10 +90,14 @@ export function NavUser({
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <BadgeCheck />
-                  Cài đặt
-                </DropdownMenuItem>
+                <DropdownMenuItem
+                  render={
+                    <Link href={`/w/${orgSlug}/settings`}>
+                      <Settings />
+                      <span>Cài đặt</span>
+                    </Link>
+                  }
+                ></DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem

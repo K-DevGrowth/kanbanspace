@@ -1,15 +1,13 @@
 import { Suspense } from "react";
 
-const WorkspaceOverview = () => {
-  return <div>Welcome</div>;
-};
-
-const WorkspacePage = () => {
+export default function WorkspacePage() {
   return (
     <Suspense fallback={null}>
       <WorkspaceOverview />
     </Suspense>
   );
-};
+}
 
-export default WorkspacePage;
+const WorkspaceOverview = () => {
+  return <div>Welcome</div>;
+};
