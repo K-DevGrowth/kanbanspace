@@ -21,7 +21,7 @@ export const requireSession = cache(async () => {
 export const requireOrgs = cache(async () => {
   const session = await requireSession();
   const orgs = (await getOrgs()) ?? [];
-  if (orgs.length === 0) redirect("/onboarding");
+  if (orgs.length === 0) redirect("/join");
   return { session, orgs };
 });
 
