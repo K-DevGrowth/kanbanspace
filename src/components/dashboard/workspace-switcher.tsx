@@ -11,7 +11,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -19,7 +18,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { CreateWorkspaceDialog } from "@/components/dashboard/create-workspace-dialog";
 import { cn } from "@/lib/utils";
 
 export interface Org {
@@ -79,9 +77,7 @@ export function WorkspaceSwitcher({
 
   // Tìm active team theo currentOrg hoặc orgSlug
   const activeTeam =
-    currentOrgProp ??
-    items.find((item) => item.slug === orgSlug) ??
-    items[0];
+    currentOrgProp ?? items.find((item) => item.slug === orgSlug) ?? items[0];
 
   if (!activeTeam && items.length === 0) {
     return null;
@@ -111,9 +107,9 @@ export function WorkspaceSwitcher({
             >
               <DropdownMenuGroup>
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Teams
+                  Không gian làm việc
                 </DropdownMenuLabel>
-                {items.map((team, index) => {
+                {items.map((team) => {
                   return (
                     <DropdownMenuItem
                       key={team.id || team.slug || team.name}
@@ -128,7 +124,6 @@ export function WorkspaceSwitcher({
                         {renderLogo(team.logo, team.name, "size-4 shrink-0")}
                       </div>
                       <span className="truncate flex-1">{team.name}</span>
-                      <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   );
                 })}
@@ -142,20 +137,18 @@ export function WorkspaceSwitcher({
                   <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                     <Plus className="size-4" />
                   </div>
-                  <div className="font-medium text-muted-foreground">
-                    Add team
-                  </div>
+                  <Link
+                    href={`/join`}
+                    className="font-medium text-muted-foreground"
+                  >
+                    Thêm không gian làm việc
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
-
-      <CreateWorkspaceDialog
-        open={openCreateDialog}
-        onOpenChange={setOpenCreateDialog}
-      />
     </>
   );
 }

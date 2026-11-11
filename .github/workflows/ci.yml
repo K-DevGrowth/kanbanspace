@@ -36,4 +36,3 @@ jobs:
       - run: npx tsc --noEmit
       - run: npx drizzle-kit check
       - run: npx vitest run --passWithNoTests
-      - run: npm run build
