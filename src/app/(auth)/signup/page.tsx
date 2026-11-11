@@ -15,8 +15,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { authClient } from "@/lib/auth/auth-client";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Loader2 } from "lucide-react";
-import { GalleryVerticalEnd } from "lucide-react";
+import { ArrowLeft, FolderKanban, Loader2 } from "lucide-react";
 import { GoogleButton } from "@/components/auth/google-button";
 
 const AUTH_ERRORS: Record<string, string> = {
@@ -76,20 +75,26 @@ export default function SignupPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="relative hidden bg-muted lg:block">
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-muted flex items-center justify-center p-12">
+          <div className="max-w-md space-y-4 text-center">
+            <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
+              <FolderKanban className="size-8" />
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight">KanbanSpace</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Nền tảng quản lý dự án trực quan, tốc độ cao và tối giản dành cho các đội ngũ công nghệ hiện đại.
+            </p>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-4 p-4 md:p-6">
         <div className="flex justify-center gap-2 md:justify-start">
-          <a href="#" className="flex items-center gap-2 font-medium">
+          <Link href="/" className="flex items-center gap-2 font-medium">
             <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-              <GalleryVerticalEnd className="size-4" />
+              <FolderKanban className="size-4" />
             </div>
             KanbanSpace
-          </a>
+          </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
