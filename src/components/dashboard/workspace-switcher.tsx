@@ -3,7 +3,6 @@
 import * as React from "react";
 import { ChevronDown, Plus } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 
 import {
   DropdownMenu,
@@ -21,10 +20,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { CreateWorkspaceDialog } from "@/components/dashboard/create-workspace-dialog";
-import { authClient } from "@/lib/auth/auth-client";
 import { cn } from "@/lib/utils";
 
-export interface Team {
+export interface Org {
   id?: string;
   name: string;
   logo?: React.ElementType | React.ReactNode | string | null;
@@ -32,12 +30,13 @@ export interface Team {
   slug?: string;
 }
 
-export type Org = Team;
+export type Team = Org;
 
 interface WorkspaceSwitcherProps {
-  teams?: Team[];
-  orgs?: Team[];
-  currentOrg?: Team;
+  orgs?: Org[];
+  teams?: Org[];
+  currentOrg?: Org;
+  orgSlug?: string;
 }
 
 function renderLogo(
@@ -70,20 +69,18 @@ function renderLogo(
 }
 
 export function WorkspaceSwitcher({
+  orgs = [],
   teams,
-  orgs,
   currentOrg: currentOrgProp,
+  orgSlug,
 }: WorkspaceSwitcherProps) {
   const items = teams ?? orgs ?? [];
-  const params = useParams();
-  const orgSlug = (params?.orgSlug as string) || "";
   const [openCreateDialog, setOpenCreateDialog] = React.useState(false);
-  const [selectedTeam, setSelectedTeam] = React.useState<Team | null>(null);
 
+  // Tìm active team theo currentOrg hoặc orgSlug
   const activeTeam =
-    selectedTeam ??
-    items.find((item) => item.slug === orgSlug) ??
     currentOrgProp ??
+    items.find((item) => item.slug === orgSlug) ??
     items[0];
 
   if (!activeTeam && items.length === 0) {
@@ -117,25 +114,15 @@ export function WorkspaceSwitcher({
                   Teams
                 </DropdownMenuLabel>
                 {items.map((team, index) => {
-                  const handleClick = () => {
-                    setSelectedTeam(team);
-                    if (team.id) {
-                      authClient.organization
-                        .setActive({ organizationId: team.id })
-                        .catch(() => {});
-                    }
-                  };
-
                   return (
                     <DropdownMenuItem
                       key={team.id || team.slug || team.name}
-                      onClick={handleClick}
                       render={
                         team.slug ? (
-                          <Link href={`/w/${team.slug}`} />
+                          <Link href={`/w/${team.slug}`} prefetch={true} />
                         ) : undefined
                       }
-                      className="gap-2 p-2"
+                      className="gap-2 p-2 cursor-pointer"
                     >
                       <div className="flex size-6 items-center justify-center rounded-xs border">
                         {renderLogo(team.logo, team.name, "size-4 shrink-0")}
