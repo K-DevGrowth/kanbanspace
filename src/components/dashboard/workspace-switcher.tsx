@@ -129,10 +129,7 @@ export function WorkspaceSwitcher({
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem
-                  className="gap-2 p-2"
-                  onClick={() => setOpenCreateDialog(true)}
-                >
+                <DropdownMenuItem className="gap-2 p-2">
                   <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                     <Plus className="size-4" />
                   </div>
