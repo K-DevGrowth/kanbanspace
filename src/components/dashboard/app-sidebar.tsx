@@ -14,10 +14,12 @@ import { NavMain } from "./nav-main";
 import { SettingsBackHeader } from "../settings/settings-back-header";
 import { NavSettings } from "../settings/nav-settings";
 import { useParams, usePathname } from "next/navigation";
+import { NavProject } from "@/features/projects/schema";
 
 export function AppSidebar({
   orgs = [],
   user,
+  projects,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   orgs?: Org[];
@@ -30,6 +32,7 @@ export function AppSidebar({
     name: string;
     image?: string | null | undefined;
   };
+  projects?: NavProject[];
 }) {
   const params = useParams();
   const pathname = usePathname();
@@ -50,7 +53,11 @@ export function AppSidebar({
         ) : (
           /* Chế độ Dashboard thông thường: WorkspaceSwitcher */
           <>
-            <WorkspaceSwitcher orgs={orgs} currentOrg={currentOrg} orgSlug={orgSlug} />
+            <WorkspaceSwitcher
+              orgs={orgs}
+              currentOrg={currentOrg}
+              orgSlug={orgSlug}
+            />
             <NavMain orgSlug={orgSlug} />
           </>
         )}
@@ -62,7 +69,7 @@ export function AppSidebar({
           <NavSettings orgSlug={orgSlug} />
         ) : (
           /* Chế độ Dashboard: Danh sách các dự án */
-          <NavProjects />
+          <NavProjects projects={projects} />
         )}
       </SidebarContent>
 

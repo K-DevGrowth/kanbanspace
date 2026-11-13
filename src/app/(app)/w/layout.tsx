@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { requireOrgs } from "@/lib/auth/session";
+import { listProjects } from "@/features/projects/queries";
 
 export const instant = false;
 
@@ -24,12 +25,15 @@ async function SharedShell({
   children: React.ReactNode;
 }>) {
   const { session, orgs } = await requireOrgs();
+  const projects = await listProjects(
+    session.session.activeOrganizationId ?? orgs[0].id,
+  );
   const cookieStore = await cookies();
   const defaultOpen = cookieStore.get("sidebar_state")?.value !== "false";
 
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
-      <AppSidebar orgs={orgs} user={session.user} />
+      <AppSidebar orgs={orgs} user={session.user} projects={projects} />
       {children}
     </SidebarProvider>
   );
