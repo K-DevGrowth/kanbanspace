@@ -9,5 +9,5 @@ export default function WorkspacePage() {
 }
 
 const WorkspaceOverview = () => {
-  return <div>Welcome</div>;
+  return <div>Tổng quan</div>;
 };
