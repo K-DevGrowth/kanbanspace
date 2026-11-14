@@ -15,7 +15,6 @@ import {
   Sliders,
   Users,
   Shield,
-  Trash2,
 } from "lucide-react";
 
 interface NavSettingsProps {
@@ -27,10 +26,10 @@ export function NavSettings({ orgSlug }: NavSettingsProps) {
 
   const groups = [
     {
-      label: "Tài khoản",
+      label: "Account",
       items: [
         {
-          title: "Hồ sơ cá nhân",
+          title: "Profile",
           url: `/w/${orgSlug}/settings/profile`,
           icon: <User className="size-4" />,
           exact: true,
@@ -38,22 +37,22 @@ export function NavSettings({ orgSlug }: NavSettingsProps) {
       ],
     },
     {
-      label: "Không gian làm việc",
+      label: "Workspace",
       items: [
         {
-          title: "Chung",
+          title: "General",
           url: `/w/${orgSlug}/settings`,
           icon: <Sliders className="size-4" />,
           exact: true,
         },
         {
-          title: "Thành viên",
+          title: "Members",
           url: `/w/${orgSlug}/settings/members`,
           icon: <Users className="size-4" />,
           exact: true,
         },
         {
-          title: "Phân quyền & Vai trò",
+          title: "Roles & Permissions",
           url: `/w/${orgSlug}/settings/roles`,
           icon: <Shield className="size-4" />,
           exact: true,

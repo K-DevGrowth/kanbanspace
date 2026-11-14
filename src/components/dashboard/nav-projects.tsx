@@ -60,15 +60,15 @@ export function NavProjects({ projects }: { projects?: NavProject[] }) {
                       )}
                     </div>
                   </div>
-                  <span className="flex-1 text-left font-medium">Dự án</span>
+                  <span className="flex-1 text-left font-medium">Projects</span>
                 </SidebarMenuButton>
               }
             />
 
-            {/* Nút dấu cộng (+) tạo dự án nhanh bên phải khi hover vào dòng "Dự án" */}
+            {/* Quick add button */}
             <SidebarMenuAction
               showOnHover
-              title="Thêm dự án"
+              title="Create project"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsCreateOpen(true);
@@ -113,7 +113,7 @@ export function NavProjects({ projects }: { projects?: NavProject[] }) {
                             }
                           >
                             <MoreHorizontal className="size-3.5" />
-                            <span className="sr-only">Tùy chọn dự án</span>
+                            <span className="sr-only">Project options</span>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent
                             align="end"
@@ -123,7 +123,7 @@ export function NavProjects({ projects }: { projects?: NavProject[] }) {
                             <DropdownMenuGroup>
                               <DropdownMenuItem className="cursor-pointer gap-2 text-destructive focus:bg-destructive/10 focus:text-destructive">
                                 <Trash2 className="size-4" />
-                                <span>Xóa dự án</span>
+                                <span>Delete project</span>
                               </DropdownMenuItem>
                             </DropdownMenuGroup>
                           </DropdownMenuContent>

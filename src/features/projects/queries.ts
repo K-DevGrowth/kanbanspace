@@ -9,3 +9,13 @@ export async function listProjects(orgId: string) {
     orderBy: { createdAt: "desc" },
   });
 }
+
+export async function getProjectById(orgId: string, projectId: string) {
+  return db.query.project.findFirst({
+    where: {
+      organizationId: orgId,
+      id: projectId,
+      archivedAt: { isNull: true },
+    },
+  });
+}

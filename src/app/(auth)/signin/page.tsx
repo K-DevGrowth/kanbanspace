@@ -19,7 +19,7 @@ import { ArrowLeft, FolderKanban, Loader2 } from "lucide-react";
 import { GoogleButton } from "@/components/auth/google-button";
 
 const AUTH_ERRORS: Record<string, string> = {
-  INVALID_EMAIL_OR_PASSWORD: "Email hoặc mật khẩu không hợp lệ.",
+  INVALID_EMAIL_OR_PASSWORD: "Invalid email or password.",
 };
 
 export default function LoginPage() {
@@ -43,7 +43,7 @@ export default function LoginPage() {
 
       if (error) {
         setError(
-          (error.code && AUTH_ERRORS[error.code]) ?? "Đăng nhập thất bại",
+          (error.code && AUTH_ERRORS[error.code]) ?? "Sign in failed",
         );
         return;
       }
@@ -53,7 +53,7 @@ export default function LoginPage() {
       setEmail("");
       setPassword("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Đã có lỗi xảy ra");
+      setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ export default function LoginPage() {
             </div>
             <h2 className="text-2xl font-bold tracking-tight">KanbanSpace</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Nền tảng quản lý dự án trực quan, tốc độ cao và tối giản dành cho các đội ngũ công nghệ hiện đại.
+              Visual, high-speed, and minimal project management designed for modern software teams.
             </p>
           </div>
         </div>
@@ -89,15 +89,15 @@ export default function LoginPage() {
               <FieldGroup>
                 <div className="flex flex-start">
                   <Button variant="ghost" size="sm" className="-ml-3">
-                    <Link href="/" className="flex">
+                    <Link href="/" className="flex items-center gap-1.5">
                       <ArrowLeft className="size-4" />
-                      Quay lại trang chủ
+                      Back to home
                     </Link>
                   </Button>
                 </div>
                 <div className="flex flex-col items-center gap-1 text-center">
                   <h1 className="text-2xl font-bold">
-                    Đăng nhập vào tài khoản
+                    Sign in to your account
                   </h1>
                 </div>
                 <Field>
@@ -105,7 +105,7 @@ export default function LoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="name@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -113,12 +113,12 @@ export default function LoginPage() {
                 </Field>
                 <Field>
                   <div className="flex items-center">
-                    <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
+                    <FieldLabel htmlFor="password">Password</FieldLabel>
                     <a
                       href="#"
                       className="ml-auto text-sm underline-offset-4 hover:underline"
                     >
-                      Quên mật khẩu?
+                      Forgot password?
                     </a>
                   </div>
                   <Input
@@ -129,7 +129,7 @@ export default function LoginPage() {
                     required
                   />
                 </Field>
-                <FieldDescription className="text-red-500">
+                <FieldDescription className="text-destructive">
                   {error}
                 </FieldDescription>
                 <Field>
@@ -137,20 +137,20 @@ export default function LoginPage() {
                     {loading ? (
                       <Loader2 className="animate-spin" />
                     ) : (
-                      "Đăng nhập"
+                      "Sign in"
                     )}
                   </Button>
                 </Field>
-                <FieldSeparator>Hoặc tiếp tục với</FieldSeparator>
+                <FieldSeparator>Or continue with</FieldSeparator>
                 <Field>
                   <GoogleButton />
                   <FieldDescription className="text-center">
-                    Chưa có tài khoản?{" "}
+                    Don&apos;t have an account?{" "}
                     <Link
                       href="/signup"
                       className="underline underline-offset-4"
                     >
-                      Đăng ký
+                      Sign up
                     </Link>
                   </FieldDescription>
                 </Field>

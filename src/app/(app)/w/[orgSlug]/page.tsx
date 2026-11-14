@@ -9,5 +9,5 @@ export default function WorkspacePage() {
 }
 
 const WorkspaceOverview = () => {
-  return <div>Tổng quan</div>;
+  return <div className="p-6 font-medium text-foreground">Overview</div>;
 };

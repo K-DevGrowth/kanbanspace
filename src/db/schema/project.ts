@@ -2,14 +2,28 @@ import {
   check,
   index,
   integer,
+  jsonb,
   pgTable,
   text,
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 import { organization, user } from "./auth-schema";
-import { ts } from "./helpers";
+import { ts } from "./_helpers";
 import { defineRelationsPart, sql } from "drizzle-orm";
+
+export interface ProjectColumn {
+  id: string;
+  name: string;
+  key: string; // "todo" | "in_progress" | "in_review" | "done" | custom
+  color?: string;
+}
+
+export const DEFAULT_KANBAN_COLUMNS: ProjectColumn[] = [
+  { id: "todo", name: "To Do", key: "todo", color: "#64748b" },
+  { id: "in_progress", name: "In Progress", key: "in_progress", color: "#3b82f6" },
+  { id: "done", name: "Done", key: "done", color: "#10b981" },
+];
 
 export const project = pgTable(
   "project",
@@ -21,6 +35,8 @@ export const project = pgTable(
     key: text("key").notNull(), // "PLN" → mã task PLN-123
     name: text("name").notNull(),
     description: text("description"),
+    template: text("template").notNull().default("kanban"),
+    columns: jsonb("columns").$type<ProjectColumn[]>(),
     taskCounter: integer("task_counter").notNull().default(0), // số thứ tự task cuối cùng đã cấp
     archivedAt: ts("archived_at"),
     createdBy: text("created_by")

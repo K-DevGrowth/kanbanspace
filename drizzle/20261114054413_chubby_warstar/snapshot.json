@@ -1,0 +1,81 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "2c0d9e6b-f64c-45a9-bc4e-8f072c6aca99",
+  "prevIds": [
+    "36edd9de-a2e6-4872-b7a8-3c673e584a7c"
+  ],
+  "footprints": [
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "project",
+        "template"
+      ],
+      "writes": [
+        "s|col|public.project.template",
+        "n|col|public.project.template",
+        "e|col|public.project.template"
+      ],
+      "reads": [
+        "n|tbl|public.project",
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "project",
+        "columns"
+      ],
+      "writes": [
+        "s|col|public.project.columns",
+        "n|col|public.project.columns",
+        "e|col|public.project.columns"
+      ],
+      "reads": [
+        "n|tbl|public.project",
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "project",
+        "name": "template",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "'kanban'",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "project",
+        "name": "columns",
+        "type": "jsonb",
+        "typeSchema": null,
+        "notNull": false,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    }
+  ]
+}

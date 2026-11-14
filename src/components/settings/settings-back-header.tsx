@@ -11,7 +11,7 @@ export function SettingsBackHeader({ orgSlug }: { orgSlug: string }) {
       className="h-9 gap-2 px-2 font-medium text-foreground hover:bg-sidebar-accent"
     >
       <ArrowLeft className="size-4 text-muted-foreground" />
-      <span className="truncate">Quay lại</span>
+      <span className="truncate">Back to workspace</span>
     </SidebarMenuButton>
   );
 }

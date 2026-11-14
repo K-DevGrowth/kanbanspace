@@ -1,11 +1,13 @@
 import { db } from "@/db/client";
-import { project } from "@/db/schema";
+import { project, ProjectColumn } from "@/db/schema";
 
 export async function createProject(data: {
   organizationId: string;
   name: string;
   key: string;
   description?: string | null;
+  template?: string;
+  columns?: ProjectColumn[];
   createdBy: string;
 }) {
   const existing = await db.query.project.findFirst({
@@ -16,7 +18,7 @@ export async function createProject(data: {
   });
 
   if (existing)
-    throw new Error(`Mã dự án ${existing.key} đã tồn tại trong không gian này`);
+    throw new Error(`Project key ${existing.key} already exists in this workspace`);
 
   const [newProject] = await db
     .insert(project)
@@ -26,6 +28,8 @@ export async function createProject(data: {
       name: data.name,
       key: data.key,
       description: data.description ?? null,
+      template: data.template,
+      columns: data.columns,
       createdBy: data.createdBy,
     })
     .returning();

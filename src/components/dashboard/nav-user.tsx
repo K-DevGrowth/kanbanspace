@@ -94,7 +94,7 @@ export function NavUser({
                   render={
                     <Link href={`/w/${orgSlug}/settings`}>
                       <Settings />
-                      <span>Cài đặt</span>
+                      <span>Settings</span>
                     </Link>
                   }
                 ></DropdownMenuItem>
@@ -109,7 +109,7 @@ export function NavUser({
                 className="cursor-pointer"
               >
                 <LogOut />
-                Đăng xuất
+                Log out
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
