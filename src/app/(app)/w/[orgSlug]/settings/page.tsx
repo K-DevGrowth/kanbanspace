@@ -25,11 +25,11 @@ async function SettingsGeneralPage({
 
   return (
     <div className="max-w-4xl space-y-6">
-      {/* Tiêu đề trang */}
+      {/* Page Title */}
       <div>
-        <h2 className="text-xl font-bold tracking-tight">Cài đặt chung</h2>
+        <h2 className="text-xl font-bold tracking-tight">General Settings</h2>
         <p className="text-sm text-muted-foreground">
-          Quản lý thông tin và cấu hình cơ bản của không gian làm việc.
+          Manage your workspace details and preferences.
         </p>
       </div>
 

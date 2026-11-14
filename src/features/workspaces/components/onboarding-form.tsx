@@ -32,7 +32,6 @@ const OnboardingForm = () => {
     setName(newName);
     if (errorMessage) setErrorMessage("");
 
-    // Nếu người dùng chưa từng chủ động sửa slug thì tự động cập nhật slug theo name
     if (!isSlugEdited) {
       setSlug(generateSlug(newName));
     }
@@ -42,10 +41,8 @@ const OnboardingForm = () => {
     const newSlug = e.target.value;
     setSlug(newSlug);
     if (errorMessage) setErrorMessage("");
-    // Đánh dấu người dùng đã tự tay sửa slug
     setIsSlugEdited(true);
 
-    // Nếu người dùng xóa sạch slug thì bật lại chế độ tự sinh slug theo name hiện tại
     if (newSlug.trim() === "") {
       setIsSlugEdited(false);
     }
@@ -56,7 +53,7 @@ const OnboardingForm = () => {
 
     const finalSlug = (slug.trim() || generateSlug(name)).trim();
     if (!name.trim() || !finalSlug) {
-      setErrorMessage("Vui lòng nhập tên và đường dẫn hợp lệ");
+      setErrorMessage("Please enter a valid workspace name and URL slug");
       return;
     }
 
@@ -71,8 +68,8 @@ const OnboardingForm = () => {
       if (error) {
         setErrorMessage(
           error.code === "ORGANIZATION_ALREADY_EXISTS"
-            ? "Đường dẫn này đã được dùng, hãy thử đường dẫn khác"
-            : "Có lỗi xảy ra, vui lòng thử lại",
+            ? "This workspace URL is already taken, please choose another"
+            : "An error occurred, please try again",
         );
         return;
       }
@@ -84,7 +81,7 @@ const OnboardingForm = () => {
       setIsSlugEdited(false);
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : "Có lỗi xảy ra");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -92,19 +89,19 @@ const OnboardingForm = () => {
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
-      {/* Tên không gian làm việc */}
+      {/* Workspace name */}
       <div className="space-y-2">
         <Label
           htmlFor="name"
           className="text-xs font-medium text-foreground/80"
         >
-          Tên không gian làm việc
+          Workspace name
         </Label>
         <Input
           id="name"
           name="name"
           autoComplete="off"
-          placeholder="VD: Nhóm Công Nghệ, Acma Corp..."
+          placeholder="e.g., Engineering Team, Acme Corp..."
           className="h-10 rounded-lg border-input bg-background px-3 text-sm placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring"
           required
           value={name}
@@ -112,10 +109,10 @@ const OnboardingForm = () => {
         />
       </div>
 
-      {/* Đường dẫn URL */}
+      {/* URL slug */}
       <div className="space-y-2">
         <Label htmlFor="url" className="text-xs font-medium text-foreground/80">
-          Đường dẫn truy cập
+          Workspace URL
         </Label>
         <div className="relative flex items-center">
           <span className="pointer-events-none absolute left-3 text-sm text-muted-foreground select-none font-medium">
@@ -125,17 +122,17 @@ const OnboardingForm = () => {
             id="url"
             name="url"
             autoComplete="off"
-            placeholder="nhom-cong-nghe"
+            placeholder="engineering-team"
             className="h-10 rounded-lg border-input bg-background pl-8 pr-3 text-sm placeholder:text-muted-foreground/60 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring"
             required
             value={slug}
             onChange={handleSlugChange}
           />
         </div>
-        {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+        {errorMessage && <p className="text-sm text-destructive">{errorMessage}</p>}
       </div>
 
-      {/* Nút hành động */}
+      {/* Submit Button */}
       <div className="pt-3">
         <Button
           type="submit"
@@ -144,7 +141,7 @@ const OnboardingForm = () => {
           {loading ? (
             <Loader2 className="animate-spin" />
           ) : (
-            "Tạo không gian làm việc"
+            "Create workspace"
           )}
         </Button>
       </div>

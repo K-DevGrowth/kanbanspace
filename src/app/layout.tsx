@@ -3,8 +3,8 @@ import { Be_Vietnam_Pro, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "KanbanSpace | Nền tảng Quản lý Dự án SaaS",
-  description: "Nền tảng Quản lý Dự án SaaS Hiện đại, Tốc độ cao và Tối giản cho các đội ngũ công nghệ.",
+  title: "KanbanSpace | SaaS Project Management Platform",
+  description: "Modern, high-velocity, and minimal SaaS project management for engineering teams.",
 };
 
 const beVietNamPro = Be_Vietnam_Pro({
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="vi"
+      lang="en"
       className={`${beVietNamPro.variable} ${geistMono.variable} font-sans`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased selection:bg-blue-500/15 selection:text-foreground">

@@ -106,7 +106,7 @@ export function WorkspaceSwitcher({
             >
               <DropdownMenuGroup>
                 <DropdownMenuLabel className="text-xs text-muted-foreground">
-                  Không gian làm việc
+                  Workspaces
                 </DropdownMenuLabel>
                 {items.map((team) => {
                   return (
@@ -137,7 +137,7 @@ export function WorkspaceSwitcher({
                     href={`/join`}
                     className="font-medium text-muted-foreground"
                   >
-                    Thêm không gian làm việc
+                    Add workspace
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>

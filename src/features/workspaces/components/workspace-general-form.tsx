@@ -38,10 +38,10 @@ interface WorkspaceGeneralFormProps {
 
 function validateSlug(value: string): string {
   if (!value.trim()) {
-    return "Đường dẫn không được để trống.";
+    return "Workspace slug cannot be empty.";
   }
   if (!/^[a-z0-9-]+$/.test(value)) {
-    return "Đường dẫn chỉ được chứa chữ thường (a-z), số (0-9) và dấu gạch ngang (-).";
+    return "Slug can only contain lowercase letters (a-z), numbers (0-9), and hyphens (-).";
   }
   return "";
 }
@@ -72,7 +72,7 @@ export default function WorkspaceGeneralForm({
     }
 
     if (slug.startsWith("-") || slug.endsWith("-")) {
-      setSlugError("Đường dẫn không được bắt đầu hoặc kết thúc bằng dấu gạch ngang.");
+      setSlugError("Slug cannot start or end with a hyphen.");
       return;
     }
 
@@ -101,24 +101,24 @@ export default function WorkspaceGeneralForm({
 
   return (
     <div className="space-y-6">
-      {/* 1. Thông tin chung của Không gian làm việc */}
+      {/* 1. General workspace details */}
       <Card className="overflow-hidden">
         <CardHeader>
           <CardTitle className="text-base font-semibold">
-            Thông tin không gian làm việc
+            Workspace Details
           </CardTitle>
           <CardDescription className="text-sm text-muted-foreground">
-            Tên hiển thị và đường dẫn truy cập của không gian làm việc hiện tại.
+            Display name and access URL for this workspace.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="workspace-name" className="text-sm font-medium">
-              Tên không gian làm việc
+              Workspace name
             </Label>
             <Input
               id="workspace-name"
-              placeholder="Nhập tên không gian làm việc..."
+              placeholder="Enter workspace name..."
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={!canEdit}
@@ -128,7 +128,7 @@ export default function WorkspaceGeneralForm({
 
           <div className="space-y-2">
             <Label htmlFor="workspace-url" className="text-sm font-medium">
-              Đường dẫn truy cập (URL)
+              Workspace URL
             </Label>
             <div className="flex max-w-md">
               <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-muted px-3 text-sm text-muted-foreground select-none font-mono">
@@ -137,7 +137,7 @@ export default function WorkspaceGeneralForm({
               <Input
                 id="workspace-url"
                 className={`rounded-l-none font-mono text-sm ${slugError ? "border-destructive focus-visible:ring-destructive" : ""}`}
-                placeholder="slug-khong-gian"
+                placeholder="workspace-slug"
                 value={slug}
                 onChange={handleSlugChange}
                 disabled={!canEdit}
@@ -147,7 +147,7 @@ export default function WorkspaceGeneralForm({
               <p className="text-xs font-medium text-destructive">{slugError}</p>
             ) : (
               <p className="text-xs text-muted-foreground">
-                Đường dẫn duy nhất để các thành viên truy cập vào không gian làm việc.
+                A unique URL slug used by team members to access your workspace.
               </p>
             )}
           </div>
@@ -155,8 +155,8 @@ export default function WorkspaceGeneralForm({
         <CardFooter className="flex items-center justify-between border-t bg-muted/30 px-6 py-3">
           <p className="text-xs text-muted-foreground">
             {canEdit
-              ? "Độ dài tên khuyến nghị từ 2 đến 50 ký tự."
-              : "* Bạn chỉ có quyền xem, chỉ Quản trị viên mới có thể chỉnh sửa."}
+              ? "Recommended name length is between 2 and 50 characters."
+              : "* View only. Only administrators can make changes."}
           </p>
           {canEdit && (
             <Button
@@ -165,35 +165,35 @@ export default function WorkspaceGeneralForm({
               onClick={handleUpdate}
               disabled={!!slugError || !name.trim() || !slug.trim()}
             >
-              Lưu thay đổi
+              Save changes
             </Button>
           )}
         </CardFooter>
       </Card>
 
-      {/* 2. Khu vực nguy hiểm (Danger Zone) chuẩn SaaS - Chỉ hiển thị cho Chủ sở hữu (Owner) */}
+      {/* 2. Danger Zone */}
       {isOwner && (
         <Card className="border-destructive/30 overflow-hidden shadow-none">
           <CardHeader className="border-b border-destructive/15 bg-destructive/[0.03] py-4">
             <div className="flex items-center gap-2 text-destructive">
               <AlertTriangle className="size-4" />
               <CardTitle className="text-base font-semibold text-destructive">
-                Khu vực nguy hiểm
+                Danger Zone
               </CardTitle>
             </div>
             <CardDescription className="text-xs text-muted-foreground">
-              Các hành động tại đây mang tính vĩnh viễn và không thể khôi phục sau khi thực hiện.
+              These actions are permanent and cannot be undone.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <p className="text-sm font-medium text-foreground">
-                  Xóa không gian làm việc này
+                  Delete this workspace
                 </p>
                 <p className="text-xs text-muted-foreground max-w-xl leading-relaxed">
-                  Xóa vĩnh viễn không gian làm việc cùng toàn bộ dự án, bảng việc,
-                  tài liệu và dữ liệu thành viên. Thao tác này không thể hoàn tác.
+                  Permanently delete this workspace and all associated projects, tasks,
+                  and member data. This action cannot be undone.
                 </p>
               </div>
 
@@ -207,28 +207,27 @@ export default function WorkspaceGeneralForm({
                       className="shrink-0"
                     >
                       <Trash2 className="size-4 mr-1.5" />
-                      Xóa không gian làm việc
+                      Delete workspace
                     </Button>
                   }
                 />
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Bạn có chắc chắn muốn xóa không gian này?
+                      Are you sure you want to delete this workspace?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      Hành động này không thể hoàn tác. Mọi dự án, bảng việc và dữ liệu
-                      thành viên của <strong>{org.name}</strong> sẽ bị xóa vĩnh viễn
-                      khỏi hệ thống.
+                      This action cannot be undone. All projects, tasks, and data belonging
+                      to <strong>{org.name}</strong> will be permanently removed.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Hủy</AlertDialogCancel>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={handleDelete}
                       className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                     >
-                      Xác nhận xóa
+                      Confirm deletion
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

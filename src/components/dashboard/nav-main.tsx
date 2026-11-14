@@ -7,17 +7,17 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon, SettingsIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 
 export function NavMain({ orgSlug }: { orgSlug: string }) {
   const pathname = usePathname();
 
   const items = [
     {
-      title: "Tổng quan",
+      title: "Overview",
       url: `/w/${orgSlug}`,
       icon: <HomeIcon />,
-      exact: true, // tránh "Tổng quan" luôn active vì là prefix của mọi route khác
+      exact: true,
     },
   ];
 

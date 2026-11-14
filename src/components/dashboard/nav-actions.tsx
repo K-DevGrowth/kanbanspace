@@ -59,7 +59,7 @@ const data = [
       icon: <CornerUpRightIcon />,
     },
     {
-      label: "Xóa dự án",
+      label: "Delete project",
       icon: <Trash2Icon />,
     },
   ],

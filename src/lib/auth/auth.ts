@@ -49,8 +49,8 @@ export const auth = betterAuth({
     //     void resend.emails.send({
     //       from: "KanbanSpace <noreply@kanbanspace.site>",
     //       to: email,
-    //       subject: type === "sign-in" ? "Mã xác thực OTP KanbanSpace" : "",
-    //       html: `<p>Mã OTP của bạn là: <strong>${otp}</strong></p>`,
+    //       subject: type === "sign-in" ? "KanbanSpace Verification Code" : "",
+    //       html: `<p>Your verification code is: <strong>${otp}</strong></p>`,
     //     });
     //   },
     // }),
